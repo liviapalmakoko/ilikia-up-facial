@@ -1,10 +1,74 @@
 // ============ ANO DINÂMICO NO FOOTER ============
-document.getElementById('ano').textContent = new Date().getFullYear();
+const anoEl = document.getElementById('ano');
+if (anoEl) anoEl.textContent = new Date().getFullYear();
+
+// ============ REVEAL ON SCROLL ============
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if (reduceMotion) {
+  document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+} else {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+}
+
+// ============ HERO PARTICLES (efeito starfield igual upmax) ============
+(function () {
+  function initHeroParticles() {
+    const container = document.getElementById('hero-particles');
+    if (!container) return;
+    if (reduceMotion) return;
+
+    const isMobile = window.matchMedia('(max-width: 640px)').matches;
+    const count = isMobile ? 200 : 480;
+    const frag = document.createDocumentFragment();
+
+    for (let i = 0; i < count; i++) {
+      const p = document.createElement('div');
+      p.className = 'p';
+      const yPct = Math.random() * 100;
+      const sizeFactor = 0.5 + (yPct / 100) * 1.3;
+      const size = (0.8 + Math.random() * 1.6) * sizeFactor;
+      const left = Math.random() * 100;
+      const twinkleDur = 2.5 + Math.random() * 4.5;
+      const delay = -Math.random() * twinkleDur;
+      const omin = 0.05 + Math.random() * 0.25;
+      const omax = 0.45 + Math.random() * 0.55;
+      const driftRange = 60 + sizeFactor * 120;
+      const dx = ((Math.random() - 0.5) * 2 * driftRange).toFixed(1);
+      const dy = ((Math.random() - 0.5) * 2 * driftRange).toFixed(1);
+      const moveDur = 2.5 + Math.random() * 4;
+      const moveDelay = -Math.random() * moveDur;
+
+      p.style.cssText =
+        'width:' + size.toFixed(2) + 'px;height:' + size.toFixed(2) + 'px;' +
+        'left:' + left.toFixed(2) + '%;top:' + yPct.toFixed(2) + '%;' +
+        '--d:' + twinkleDur.toFixed(2) + 's;--delay:' + delay.toFixed(2) + 's;' +
+        '--omin:' + omin.toFixed(2) + ';--omax:' + omax.toFixed(2) + ';' +
+        '--dx:' + dx + 'px;--dy:' + dy + 'px;' +
+        '--md:' + moveDur.toFixed(2) + 's;--mdelay:' + moveDelay.toFixed(2) + 's;';
+      frag.appendChild(p);
+    }
+    container.appendChild(frag);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initHeroParticles);
+  } else {
+    initHeroParticles();
+  }
+})();
 
 // ============ MÁSCARA DE TELEFONE BR ============
-const whatsapp = document.getElementById('whatsapp');
-if (whatsapp) {
-  whatsapp.addEventListener('input', (e) => {
+const tel = document.getElementById('f-tel');
+if (tel) {
+  tel.addEventListener('input', (e) => {
     let v = e.target.value.replace(/\D/g, '').slice(0, 11);
     if (v.length > 10) {
       v = v.replace(/(\d{2})(\d{5})(\d{0,4}).*/, '($1) $2-$3');
@@ -19,36 +83,8 @@ if (whatsapp) {
   });
 }
 
-// ============ ANIMAÇÃO ON-SCROLL ============
-const animatedEls = document.querySelectorAll('.beneficio, .produto-card');
-
-if ('IntersectionObserver' in window) {
-  animatedEls.forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-  });
-
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-        }, i * 80);
-        io.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.15 });
-
-  animatedEls.forEach(el => io.observe(el));
-}
-
-// ============ FORM (placeholder de envio) ============
-// Quando definirmos o destino (Formspree, e-mail, CRM, etc.), trocamos esta lógica.
-const form = document.getElementById('form-lead');
-const feedback = document.getElementById('form-feedback');
-
+// ============ FORM SUBMIT ============
+const form = document.getElementById('leadForm');
 if (form) {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -56,15 +92,18 @@ if (form) {
       form.reportValidity();
       return;
     }
+    const submitText = document.getElementById('submitText');
+    if (submitText) submitText.textContent = 'Enviando...';
 
-    // Por enquanto, apenas coleta os dados e mostra feedback.
-    // Substituir por integração real depois (Formspree / e-mail / API).
+    // TODO: trocar por integração real (Formspree, e-mail, CRM, etc.)
     const dados = Object.fromEntries(new FormData(form).entries());
     console.log('Lead capturado:', dados);
 
-    feedback.hidden = false;
-    feedback.textContent = 'Obrigado! Em breve entraremos em contato.';
-    feedback.className = 'form-feedback success';
-    form.reset();
+    setTimeout(() => {
+      form.querySelectorAll('.form-row, .btn-submit, .form-disclaimer').forEach(el => {
+        el.style.display = 'none';
+      });
+      document.getElementById('formSuccess').classList.add('show');
+    }, 600);
   });
 }
