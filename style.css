@@ -1,0 +1,737 @@
+/* =====================================================
+   UP FACIAL — Ilikia
+   Paleta extraída da lâmina do produto
+   ===================================================== */
+
+:root {
+  /* Cores da marca */
+  --ilikia-deep:    #0F4F4D;   /* petróleo escuro Ilikia */
+  --ilikia-teal:    #1A8B86;   /* teal médio (Fine) */
+  --ilikia-teal-soft:#7FC4BE;  /* teal claro */
+  --up-deep:        #8C2E4F;   /* vinho/magenta (UP Deep) */
+  --up-contour:     #E26C3F;   /* laranja (UP Contour) */
+
+  /* Neutros */
+  --bg:             #FAFAF7;
+  --bg-soft:        #F2F0EA;
+  --bg-card:        #FFFFFF;
+  --text:           #1A1A1A;
+  --text-soft:      #555555;
+  --text-mute:      #8A8A8A;
+  --border:         #E4E2DC;
+
+  /* Tipografia */
+  --font: 'Gotham', 'Montserrat', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+
+  /* Espaçamento / radius */
+  --radius-sm: 6px;
+  --radius:    14px;
+  --radius-lg: 24px;
+  --shadow:    0 8px 32px rgba(15, 79, 77, 0.08);
+  --shadow-strong: 0 12px 48px rgba(15, 79, 77, 0.16);
+
+  --container: 1200px;
+}
+
+/* ============ RESET ============ */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img, svg { max-width: 100%; height: auto; display: block; }
+a { color: inherit; text-decoration: none; }
+button, input, select, textarea { font: inherit; color: inherit; }
+
+sup { font-size: 0.65em; vertical-align: super; }
+
+/* ============ LAYOUT ============ */
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+section { padding: 96px 0; }
+
+@media (max-width: 768px) {
+  section { padding: 64px 0; }
+}
+
+/* ============ HEADER ============ */
+.site-header {
+  padding: 24px 0;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-ilikia {
+  display: inline-block;
+  font-weight: 300;
+  letter-spacing: 0.4em;
+  font-size: 14px;
+  color: var(--ilikia-deep);
+}
+
+.logo-placeholder {
+  display: inline-block;
+}
+
+/* ============ TIPOGRAFIA ============ */
+.eyebrow {
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ilikia-teal);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-size: clamp(28px, 4vw, 44px);
+  line-height: 1.15;
+  font-weight: 300;
+  color: var(--ilikia-deep);
+  letter-spacing: -0.01em;
+  margin-bottom: 24px;
+}
+
+.section-title.center { text-align: center; }
+
+.section-title .accent {
+  color: var(--ilikia-teal);
+  font-weight: 600;
+}
+
+.accent { color: var(--ilikia-teal); }
+
+.section-text {
+  font-size: 18px;
+  color: var(--text-soft);
+  max-width: 640px;
+  line-height: 1.65;
+}
+
+/* ============ BOTÕES ============ */
+.btn {
+  display: inline-block;
+  padding: 16px 32px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  text-align: center;
+}
+
+.btn-primary {
+  background: var(--ilikia-deep);
+  color: #fff;
+  box-shadow: var(--shadow);
+}
+
+.btn-primary:hover {
+  background: var(--ilikia-teal);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-strong);
+}
+
+.btn-block { width: 100%; }
+
+.cta-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 48px;
+}
+
+/* ============ SEÇÃO 1 — HERO ============ */
+.hero {
+  padding-top: 64px;
+  padding-bottom: 96px;
+  background: linear-gradient(180deg, var(--bg) 0%, var(--bg-soft) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 64px;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 32px; }
+}
+
+.logo-up {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 32px;
+  line-height: 1;
+}
+
+.logo-up-text {
+  font-size: 72px;
+  font-weight: 700;
+  color: var(--ilikia-teal);
+  letter-spacing: -0.03em;
+  line-height: 0.9;
+}
+
+.logo-up-text em {
+  font-style: normal;
+  font-weight: 300;
+}
+
+.logo-up-sub {
+  font-size: 14px;
+  letter-spacing: 0.3em;
+  text-transform: lowercase;
+  color: var(--ilikia-teal);
+  margin-top: 4px;
+  padding-left: 4px;
+}
+
+.hero-title {
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--ilikia-deep);
+  margin-bottom: 24px;
+  letter-spacing: -0.02em;
+}
+
+.hero-title .accent {
+  color: var(--ilikia-teal);
+  font-weight: 600;
+}
+
+.hero-products {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ilikia-deep);
+  margin-bottom: 4px;
+}
+
+.hero-products .sep {
+  color: var(--ilikia-teal-soft);
+  margin: 0 6px;
+  font-weight: 300;
+}
+
+.hero-products-sub {
+  font-size: 14px;
+  color: var(--text-mute);
+  margin-bottom: 24px;
+  font-style: italic;
+}
+
+.hero-text {
+  font-size: 17px;
+  color: var(--text-soft);
+  margin-bottom: 40px;
+  max-width: 540px;
+  line-height: 1.65;
+}
+
+.hero-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-image-placeholder {
+  width: 100%;
+  aspect-ratio: 1 / 1.1;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, var(--ilikia-teal-soft) 0%, var(--bg-soft) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ilikia-deep);
+  font-weight: 500;
+  text-align: center;
+  border: 2px dashed rgba(15, 79, 77, 0.25);
+}
+
+.hero-image-placeholder small { color: var(--text-mute); font-weight: 400; }
+
+/* ============ SEÇÃO 2 — R² ============ */
+.section-r2 {
+  background: var(--bg);
+}
+
+.r2-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .r2-grid { grid-template-columns: 1fr; }
+}
+
+.r2-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.r2-mark {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--ilikia-deep), var(--ilikia-teal));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  box-shadow: var(--shadow-strong);
+  position: relative;
+}
+
+.r2-letter {
+  font-size: 120px;
+  line-height: 1;
+}
+
+.r2-sup {
+  font-size: 60px;
+  vertical-align: super;
+  position: relative;
+  top: -30px;
+  font-weight: 600;
+}
+
+.r2-caption {
+  font-size: 14px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ilikia-teal);
+  font-weight: 600;
+}
+
+/* ============ SEÇÃO 3 — DESTAQUE ============ */
+.section-highlight {
+  background: var(--ilikia-deep);
+  color: #fff;
+  padding: 80px 0;
+}
+
+.highlight-text {
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 300;
+  line-height: 1.4;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+  letter-spacing: -0.01em;
+}
+
+.section-highlight .accent {
+  color: var(--ilikia-teal-soft);
+  font-weight: 600;
+}
+
+/* ============ SEÇÃO 4 — LINHA UP ============ */
+.section-linha {
+  background: var(--bg-soft);
+}
+
+.produtos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 56px;
+}
+
+@media (max-width: 900px) {
+  .produtos-grid { grid-template-columns: 1fr; }
+}
+
+.produto-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-top: 6px solid transparent;
+}
+
+.produto-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-strong);
+}
+
+.produto-fine    { border-top-color: var(--ilikia-teal); }
+.produto-deep    { border-top-color: var(--up-deep); }
+.produto-contour { border-top-color: var(--up-contour); }
+
+.produto-image {
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.produto-image-placeholder {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius);
+  background: var(--bg-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-mute);
+  font-weight: 500;
+  text-align: center;
+  border: 2px dashed var(--border);
+  font-size: 14px;
+}
+
+.produto-nome {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.produto-nome em {
+  font-style: normal;
+  font-weight: 300;
+}
+
+.produto-nome span {
+  font-weight: 500;
+}
+
+.produto-fine .produto-nome    { color: var(--ilikia-teal); }
+.produto-deep .produto-nome    { color: var(--up-deep); }
+.produto-contour .produto-nome { color: var(--up-contour); }
+
+.produto-titulo {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.produto-descricao {
+  font-size: 14px;
+  color: var(--text-soft);
+  line-height: 1.5;
+}
+
+/* ============ SEÇÃO 5 — PERFORMANCE ============ */
+.section-performance {
+  background: var(--bg);
+}
+
+.perf-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.perf-header .section-text {
+  margin: 0 auto;
+}
+
+.beneficios-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 1000px) {
+  .beneficios-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 540px) {
+  .beneficios-grid { grid-template-columns: 1fr; }
+}
+
+.beneficio {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 32px 24px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid var(--border);
+}
+
+.beneficio:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+  border-color: var(--ilikia-teal-soft);
+}
+
+.beneficio-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 20px;
+  color: var(--ilikia-teal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.beneficio-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.beneficio-titulo {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ilikia-deep);
+  margin-bottom: 10px;
+}
+
+.beneficio-texto {
+  font-size: 14px;
+  color: var(--text-soft);
+  line-height: 1.5;
+}
+
+/* Cor alternada nos ícones para criar ritmo visual */
+.beneficio:nth-child(2) .beneficio-icon { color: var(--up-deep); }
+.beneficio:nth-child(3) .beneficio-icon { color: var(--up-contour); }
+.beneficio:nth-child(5) .beneficio-icon { color: var(--up-deep); }
+.beneficio:nth-child(6) .beneficio-icon { color: var(--up-contour); }
+
+/* ============ SEÇÃO 6 — FORMULÁRIO ============ */
+.section-form {
+  background: linear-gradient(135deg, var(--ilikia-deep) 0%, var(--ilikia-teal) 100%);
+  color: #fff;
+}
+
+.form-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .form-inner { grid-template-columns: 1fr; gap: 40px; }
+}
+
+.form-content .section-title {
+  color: #fff;
+  font-weight: 300;
+}
+
+.form-content .section-title .accent {
+  color: #fff;
+  font-weight: 700;
+}
+
+.form-content .section-text {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.form-lead {
+  background: #fff;
+  padding: 40px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-strong);
+  color: var(--text);
+}
+
+.field { margin-bottom: 20px; }
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 540px) {
+  .field-row { grid-template-columns: 1fr; }
+}
+
+.field label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ilikia-deep);
+  margin-bottom: 6px;
+  letter-spacing: 0.02em;
+}
+
+.field input,
+.field select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 15px;
+  background: #fff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.field input:focus,
+.field select:focus {
+  outline: none;
+  border-color: var(--ilikia-teal);
+  box-shadow: 0 0 0 3px rgba(26, 139, 134, 0.15);
+}
+
+.field-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 24px;
+  font-size: 13px;
+  color: var(--text-soft);
+  line-height: 1.5;
+}
+
+.field-check input {
+  margin-top: 2px;
+  width: 16px;
+  height: 16px;
+  accent-color: var(--ilikia-teal);
+  flex-shrink: 0;
+}
+
+.field-check a {
+  color: var(--ilikia-teal);
+  text-decoration: underline;
+}
+
+.form-feedback {
+  margin-top: 16px;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  text-align: center;
+}
+
+.form-feedback.success {
+  background: rgba(26, 139, 134, 0.1);
+  color: var(--ilikia-teal);
+}
+
+.form-feedback.error {
+  background: rgba(140, 46, 79, 0.1);
+  color: var(--up-deep);
+}
+
+/* ============ SEÇÃO 7 — REFERÊNCIAS ============ */
+.section-refs {
+  background: var(--bg);
+  padding: 64px 0;
+  border-top: 1px solid var(--border);
+}
+
+.refs-title {
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+  margin-bottom: 24px;
+  font-weight: 600;
+}
+
+.refs-list {
+  list-style: decimal;
+  padding-left: 20px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-mute);
+  columns: 2;
+  column-gap: 48px;
+}
+
+@media (max-width: 768px) {
+  .refs-list { columns: 1; }
+}
+
+.refs-list li {
+  margin-bottom: 8px;
+  break-inside: avoid;
+}
+
+.refs-list em {
+  font-style: italic;
+  color: var(--text-soft);
+}
+
+/* ============ FOOTER ============ */
+.site-footer {
+  background: var(--ilikia-deep);
+  color: rgba(255, 255, 255, 0.85);
+  padding: 32px 0;
+}
+
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.footer-brand {
+  font-size: 13px;
+  letter-spacing: 0.1em;
+}
+
+.footer-note {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* ============ ANIMAÇÕES SUTIS ============ */
+@media (prefers-reduced-motion: no-preference) {
+  .beneficio,
+  .produto-card,
+  .hero-content > * {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.6s ease forwards;
+  }
+
+  .hero-content > *:nth-child(1) { animation-delay: 0.05s; }
+  .hero-content > *:nth-child(2) { animation-delay: 0.15s; }
+  .hero-content > *:nth-child(3) { animation-delay: 0.25s; }
+  .hero-content > *:nth-child(4) { animation-delay: 0.30s; }
+  .hero-content > *:nth-child(5) { animation-delay: 0.40s; }
+  .hero-content > *:nth-child(6) { animation-delay: 0.50s; }
+}
+
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
