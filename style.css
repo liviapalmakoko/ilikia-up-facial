@@ -198,47 +198,69 @@ h2.h-section.center {
 .nav-cta:hover { background: var(--ilikia-teal-soft); }
 
 /* =====================================================
-   SEÇÃO 1 — HERO
+   SEÇÃO 1 — HERO (vídeo em tela cheia + texto sobreposto)
    ===================================================== */
 .hero {
   position: relative;
-  padding: 64px 0 96px;
-  background: linear-gradient(180deg, var(--bg) 0%, var(--bg-soft) 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
   overflow: hidden;
+  color: #fff;
 }
 
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 64px;
-  align-items: center;
-  margin-top: 32px;
+.hero-bg-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
 }
-@media (max-width: 900px) {
-  .hero-grid { grid-template-columns: 1fr; gap: 32px; margin-top: 16px; }
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(15, 79, 77, 0.78) 0%, rgba(15, 79, 77, 0.55) 45%, rgba(15, 79, 77, 0.25) 100%),
+    linear-gradient(180deg, rgba(15, 79, 77, 0.30) 0%, transparent 35%, rgba(15, 79, 77, 0.55) 100%);
 }
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 80px 32px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+@media (max-width: 640px) { .hero-content { padding: 64px 20px; } }
 
 .headline {
   font-family: var(--font-display);
-  font-size: clamp(40px, 5.4vw, 68px);
+  font-size: clamp(40px, 5.6vw, 72px);
   font-weight: 500;
   line-height: 1.05;
   letter-spacing: -0.02em;
-  color: var(--ilikia-deep);
+  color: #fff;
   margin-bottom: 28px;
+  max-width: 720px;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.18);
 }
 .headline em {
   font-style: italic;
   font-weight: 500;
-  color: var(--ilikia-teal);
+  color: var(--ilikia-teal-soft);
 }
 .headline strong { font-weight: 600; }
 
 .hero-products {
   font-size: 18px;
   font-weight: 600;
-  color: var(--ilikia-deep);
+  color: #fff;
   margin-bottom: 4px;
+  letter-spacing: 0.04em;
 }
 .hero-products .sep {
   color: var(--ilikia-teal-soft);
@@ -247,31 +269,31 @@ h2.h-section.center {
 }
 .hero-products-sub {
   font-size: 14px;
-  color: var(--text-mute);
+  color: rgba(255, 255, 255, 0.72);
   margin-bottom: 24px;
   font-style: italic;
+  font-family: var(--font-display);
 }
 
 .hero-tag {
   font-size: 16px;
-  color: var(--text-soft);
+  color: rgba(255, 255, 255, 0.88);
   margin-bottom: 36px;
   max-width: 540px;
   line-height: 1.65;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
 }
-.hero-tag sup { color: var(--ilikia-teal); }
+.hero-tag sup { color: var(--ilikia-teal-soft); }
 
-.hero-visual {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* Botão no hero — fundo branco, texto petróleo */
+.hero .btn-primary {
+  background: #fff;
+  color: var(--ilikia-deep);
 }
-.hero-product {
-  width: 100%;
-  height: auto;
-  max-height: 560px;
-  object-fit: contain;
-  display: block;
+.hero .btn-primary:hover {
+  background: var(--ilikia-teal-soft);
+  color: var(--ilikia-deep);
 }
 
 /* =====================================================
