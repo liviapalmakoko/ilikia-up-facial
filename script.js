@@ -2,6 +2,48 @@
 const anoEl = document.getElementById('ano');
 if (anoEl) anoEl.textContent = new Date().getFullYear();
 
+// ============ HOVER SLIDER (Seção 4 — Linha UP) ============
+const titles = document.querySelectorAll('.slide-title');
+if (titles.length) {
+  const images = document.querySelectorAll('.slide-image');
+  const infos = document.querySelectorAll('.slide-info');
+
+  // Split de cada título em char-wraps (original + duplicate) para o efeito de roll
+  titles.forEach(btn => {
+    const stagger = btn.querySelector('.slide-stagger');
+    if (!stagger) return;
+    const text = stagger.textContent;
+    stagger.innerHTML = '';
+    [...text].forEach((char, i) => {
+      const wrap = document.createElement('span');
+      wrap.className = 'char-wrap';
+      const original = document.createElement('span');
+      original.className = 'char-original';
+      original.textContent = char === ' ' ? ' ' : char;
+      original.style.transitionDelay = `${i * 25}ms`;
+      const duplicate = document.createElement('span');
+      duplicate.className = 'char-duplicate';
+      duplicate.textContent = char === ' ' ? ' ' : char;
+      duplicate.style.transitionDelay = `${i * 25}ms`;
+      wrap.appendChild(original);
+      wrap.appendChild(duplicate);
+      stagger.appendChild(wrap);
+    });
+  });
+
+  const setActive = (idx) => {
+    titles.forEach((el, i) => el.dataset.active = i === idx ? 'true' : 'false');
+    images.forEach((el, i) => el.dataset.active = i === idx ? 'true' : 'false');
+    infos.forEach((el, i) => el.dataset.active = i === idx ? 'true' : 'false');
+  };
+
+  titles.forEach((btn, i) => {
+    btn.addEventListener('mouseenter', () => setActive(i));
+    btn.addEventListener('focus', () => setActive(i));
+    btn.addEventListener('click', () => setActive(i));
+  });
+}
+
 // ============ REVEAL ON SCROLL ============
 const revealEls = document.querySelectorAll('.reveal, .stagger');
 const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
