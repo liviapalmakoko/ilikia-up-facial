@@ -2,6 +2,24 @@
 const anoEl = document.getElementById('ano');
 if (anoEl) anoEl.textContent = new Date().getFullYear();
 
+// ============ REVEAL ON SCROLL ============
+const revealEls = document.querySelectorAll('.reveal, .stagger');
+const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if (revealEls.length && 'IntersectionObserver' in window && !prefersReduced) {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.14, rootMargin: '0px 0px -60px 0px' });
+  revealEls.forEach(el => io.observe(el));
+} else {
+  revealEls.forEach(el => el.classList.add('is-visible'));
+}
+
 // ============ MÁSCARA DE TELEFONE BR ============
 const tel = document.getElementById('f-tel');
 if (tel) {

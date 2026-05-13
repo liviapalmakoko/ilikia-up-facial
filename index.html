@@ -36,8 +36,8 @@
      SEÇÃO 1 — HERO
      =========================================== -->
 <section class="hero">
-  <video class="hero-bg-video" autoplay muted loop playsinline poster="assets/images/hero.png">
-    <source src="assets/videos/hero.mp4" type="video/mp4">
+  <video class="hero-bg-video" autoplay muted loop playsinline preload="auto" poster="assets/images/hero.png">
+    <source src="assets/videos/hero.mp4?v=3" type="video/mp4">
   </video>
   <div class="hero-overlay" aria-hidden="true"></div>
 
@@ -65,17 +65,29 @@
      =========================================== -->
 <section class="section section-2">
   <div class="wrap">
-    <div class="s2-inner">
-      <h2 class="h-section">
-        Naturalidade que você <em>vê.</em><br>
-        Segurança que você e o seu paciente <em>sentem.</em><sup>2</sup>
-      </h2>
-      <p class="p-body">
-        Toda a Linha UP foi desenvolvida com a
-        <strong>Tecnologia R²</strong>, que possui um processo de
-        reticulação inteligente<sup>1</sup>, permitindo entregar resultados
-        mais naturais e ao mesmo tempo duradouros.<sup>3</sup>
-      </p>
+    <div class="s2-grid">
+      <div class="s2-text reveal">
+        <span class="kicker">Tecnologia R²</span>
+        <h2 class="h-section">
+          Naturalidade que você <em>vê.</em><br>
+          Segurança que você e o seu paciente <em>sentem.</em><sup>2</sup>
+        </h2>
+        <p class="p-body">
+          Toda a Linha UP foi desenvolvida com a
+          <strong>Tecnologia R²</strong>, que possui um processo de
+          reticulação inteligente<sup>1</sup>, permitindo entregar resultados
+          mais naturais e ao mesmo tempo duradouros.<sup>3</sup>
+        </p>
+        <ul class="s2-bullets">
+          <li>Reticulação inteligente</li>
+          <li>Integração tecidual superior</li>
+          <li>Resultados duradouros</li>
+        </ul>
+      </div>
+
+      <div class="s2-visual reveal">
+        <img src="assets/images/tecnologia-r2.png" alt="Tecnologia R² — Linha UP">
+      </div>
     </div>
   </div>
 </section>
@@ -84,7 +96,11 @@
      SEÇÃO 3 — DESTAQUE DE LEITURA
      =========================================== -->
 <section class="pullquote">
-  <div class="wrap">
+  <video class="pullquote-bg-video" autoplay muted loop playsinline preload="auto">
+    <source src="assets/videos/pullquot.mp4" type="video/mp4">
+  </video>
+  <div class="pullquote-overlay" aria-hidden="true"></div>
+  <div class="wrap pullquote-content reveal">
     <p class="pq-text">
       A escolha do preenchedor na sua prática clínica impacta diretamente na
       <em>previsibilidade</em>, na <em>segurança</em> e no
@@ -98,52 +114,49 @@
      =========================================== -->
 <section class="section section-4" id="linha">
   <div class="wrap">
-    <div class="s4-head">
+    <div class="s4-head reveal">
       <h2 class="h-section center">
         Conheça a Linha UP e descubra a versatilidade das suas
         <em>indicações:</em>
       </h2>
     </div>
 
-    <div class="linha-grid">
+    <div class="linha-grid stagger">
 
       <article class="linha-card linha-fine">
-        <div class="linha-card-image">
-          <!-- Substituir por: <img src="assets/images/up-fine.png" alt="UP Fine"> -->
-          <span class="linha-card-image-placeholder">UP&nbsp;Fine<br><small>foto do produto</small></span>
-        </div>
         <h3 class="linha-card-name">UP Fine</h3>
         <p class="linha-card-title">
           Correção de linhas finas e melhora da qualidade da pele
         </p>
+        <div class="linha-card-image">
+          <img src="assets/images/up-fine.png" alt="UP Fine">
+        </div>
         <p class="linha-card-desc">
           Atuação superficial com integração leve e uniforme
         </p>
       </article>
 
       <article class="linha-card linha-deep">
-        <div class="linha-card-image">
-          <!-- Substituir por: <img src="assets/images/up-deep.png" alt="UP Deep"> -->
-          <span class="linha-card-image-placeholder">UP&nbsp;Deep<br><small>foto do produto</small></span>
-        </div>
         <h3 class="linha-card-name">UP Deep</h3>
         <p class="linha-card-title">
           Suavização de sulcos e rugas moderadas
         </p>
+        <div class="linha-card-image">
+          <img src="assets/images/up-deep.png" alt="UP Deep">
+        </div>
         <p class="linha-card-desc">
           Equilíbrio entre suporte e naturalidade
         </p>
       </article>
 
       <article class="linha-card linha-contour">
-        <div class="linha-card-image">
-          <!-- Substituir por: <img src="assets/images/up-contour.png" alt="UP Contour"> -->
-          <span class="linha-card-image-placeholder">UP&nbsp;Contour<br><small>foto do produto</small></span>
-        </div>
         <h3 class="linha-card-name">UP Contour</h3>
         <p class="linha-card-title">
           Estruturação, projeção, volumização e definição de contorno
         </p>
+        <div class="linha-card-image">
+          <img src="assets/images/up-contour.png" alt="UP Contour">
+        </div>
         <p class="linha-card-desc">
           Alta capacidade de sustentação tecidual
         </p>
@@ -151,7 +164,7 @@
 
     </div>
 
-    <div class="s4-cta">
+    <div class="s4-cta reveal">
       <a href="#contato" class="btn-primary">Quero saber mais sobre a Linha UP</a>
     </div>
   </div>
@@ -162,7 +175,7 @@
      =========================================== -->
 <section class="section section-5" id="performance">
   <div class="wrap">
-    <div class="s5-head">
+    <div class="s5-head reveal">
       <h2 class="h-section center">
         Performance que <em>se traduz</em> na sua prática
       </h2>
@@ -172,11 +185,11 @@
       </p>
     </div>
 
-    <div class="performance-grid">
+    <div class="performance-grid stagger">
 
       <div class="perf-card">
         <span class="perf-icon" aria-hidden="true">
-          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round">
             <path d="M24 8 L40 24 L24 40 L8 24 Z"/>
             <circle cx="24" cy="24" r="5"/>
           </svg>
@@ -187,7 +200,7 @@
 
       <div class="perf-card">
         <span class="perf-icon" aria-hidden="true">
-          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round">
             <path d="M30 8 L18 8 L18 30 L24 40 L30 30 Z"/>
             <line x1="18" y1="14" x2="30" y2="14"/>
             <line x1="18" y1="20" x2="30" y2="20"/>
@@ -199,7 +212,7 @@
 
       <div class="perf-card">
         <span class="perf-icon" aria-hidden="true">
-          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="24" cy="24" r="16"/>
             <path d="M24 14 L24 24 L32 28"/>
           </svg>
@@ -210,7 +223,7 @@
 
       <div class="perf-card">
         <span class="perf-icon" aria-hidden="true">
-          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round">
             <path d="M24 6 L10 12 L10 24 C 10 32, 16 38, 24 42 C 32 38, 38 32, 38 24 L 38 12 Z"/>
             <path d="M18 24 L22 28 L30 20"/>
           </svg>
@@ -221,7 +234,7 @@
 
       <div class="perf-card">
         <span class="perf-icon" aria-hidden="true">
-          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round">
             <path d="M8 32 L18 22 L26 28 L40 14"/>
             <path d="M30 14 L40 14 L40 24"/>
           </svg>
@@ -232,7 +245,7 @@
 
       <div class="perf-card">
         <span class="perf-icon" aria-hidden="true">
-          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round">
             <path d="M24 6 L10 12 L10 24 C 10 32, 16 38, 24 42 C 32 38, 38 32, 38 24 L 38 12 Z"/>
             <circle cx="24" cy="22" r="4"/>
             <path d="M24 26 L24 32"/>
@@ -244,7 +257,7 @@
 
       <div class="perf-card">
         <span class="perf-icon" aria-hidden="true">
-          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="24" cy="24" r="16"/>
             <circle cx="24" cy="24" r="9"/>
             <circle cx="24" cy="24" r="2.5" fill="currentColor"/>
@@ -264,7 +277,7 @@
 <section class="section-6" id="contato">
   <div class="wrap">
     <div class="s6-grid">
-      <div class="s6-head">
+      <div class="s6-head reveal">
         <h2 class="h-section">
           Entre em contato para saber mais sobre os preenchedores da
           <em>Linha UP!</em>
@@ -275,7 +288,7 @@
         </p>
       </div>
 
-      <form class="form-card" id="leadForm" novalidate>
+      <form class="form-card reveal" id="leadForm" novalidate>
         <div class="form-row two">
           <div>
             <label for="f-nome">Nome</label>
@@ -340,7 +353,7 @@
 </section>
 
 <!-- ===========================================
-     FOOTER
+     FOOTER (inclui referências)
      =========================================== -->
 <footer class="site-footer">
   <div class="wrap footer-shell">
@@ -383,6 +396,18 @@
       </nav>
     </div>
 
+    <div class="footer-refs reveal" id="refs">
+      <h2 class="refs-title">Referências</h2>
+      <ol class="refs-list">
+        <li>Hahn HM, Lee WB, Lee IJ. The Effects of Subcutaneously Injected Novel Biphasic Cross-Linked Hyaluronic Acid Filler: In Vivo Study. <em>Aesthetic Plast Surg.</em> 2021 Feb;45(1):322-331. doi:10.1007/s00266-020-02033-1.</li>
+        <li>Alcantara A, Puccia EVG, Rezende CP, Kim JH, Viana R. Optimizing dermal filler for chin and jawline definition as an advanced approach for natural results: a prospective case series with ultrasonographic and 3D facial imaging evaluation. <em>Cureus.</em> 2024;16(8):e99477.</li>
+        <li>Roschel P, Scapini KB, Buzalaf M, Munoz-Lora VRM, Germani M. Clinical application of a new hyaluronic acid filler technology in facial aesthetics: a case series. <em>Int Surg Case Rep.</em> 2025;7(3):108.</li>
+        <li>Pierre S, Liew S, Bernardin A. Basics of dermal filler rheology. <em>Dermatol Surg.</em> 2015;41(Suppl 1):S120-S126. Rzany B, DeLorenzi C. Hyaluronidase in the correction of hyaluronic acid-based fillers: a review and a recommendation for use. <em>J Cosmet Dermatol.</em> 2009;8(4):317-323.</li>
+        <li>Pazzini R, Viana R, Petrone G. Long term follow-up in gluteal augmentation using cross-linked hyaluronic acid: up to 20 months ultrasound follow-up. <em>Cosmetics.</em> 2024;11(6):194.</li>
+        <li>Bussade M, Faria G, Barros M, et al. Assessment of hyaluronic acid filler in gluteal augmentation and contouring: a 1-year prospective study. <em>J Cosmet Dermatol.</em> 2025.</li>
+      </ol>
+    </div>
+
     <div class="footer-bottom">
       <span>© <span id="ano">2026</span> ILIKIA · Beauty Outside The Box</span>
       <div class="footer-logos">
@@ -392,23 +417,6 @@
     </div>
   </div>
 </footer>
-
-<!-- ===========================================
-     SEÇÃO 7 — REFERÊNCIAS
-     =========================================== -->
-<section class="section-refs" id="refs">
-  <div class="wrap">
-    <h2 class="refs-title">Referências</h2>
-    <ol class="refs-list">
-      <li>Hahn HM, Lee WB, Lee IJ. The Effects of Subcutaneously Injected Novel Biphasic Cross-Linked Hyaluronic Acid Filler: In Vivo Study. <em>Aesthetic Plast Surg.</em> 2021 Feb;45(1):322-331. doi:10.1007/s00266-020-02033-1.</li>
-      <li>Alcantara A, Puccia EVG, Rezende CP, Kim JH, Viana R. Optimizing dermal filler for chin and jawline definition as an advanced approach for natural results: a prospective case series with ultrasonographic and 3D facial imaging evaluation. <em>Cureus.</em> 2024;16(8):e99477.</li>
-      <li>Roschel P, Scapini KB, Buzalaf M, Munoz-Lora VRM, Germani M. Clinical application of a new hyaluronic acid filler technology in facial aesthetics: a case series. <em>Int Surg Case Rep.</em> 2025;7(3):108.</li>
-      <li>Pierre S, Liew S, Bernardin A. Basics of dermal filler rheology. <em>Dermatol Surg.</em> 2015;41(Suppl 1):S120-S126. Rzany B, DeLorenzi C. Hyaluronidase in the correction of hyaluronic acid-based fillers: a review and a recommendation for use. <em>J Cosmet Dermatol.</em> 2009;8(4):317-323.</li>
-      <li>Pazzini R, Viana R, Petrone G. Long term follow-up in gluteal augmentation using cross-linked hyaluronic acid: up to 20 months ultrasound follow-up. <em>Cosmetics.</em> 2024;11(6):194.</li>
-      <li>Bussade M, Faria G, Barros M, et al. Assessment of hyaluronic acid filler in gluteal augmentation and contouring: a 1-year prospective study. <em>J Cosmet Dermatol.</em> 2025.</li>
-    </ol>
-  </div>
-</section>
 
 <script src="script.js"></script>
 </body>
