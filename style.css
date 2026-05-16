@@ -492,7 +492,13 @@ h2.h-section.center {
 /* =====================================================
    SEÇÃO 4 — LINHA UP
    ===================================================== */
-.section-4 { background: var(--bg-soft); }
+.section-4 {
+  background: var(--bg-soft);
+  padding-bottom: 40px; /* aproxima da ficha técnica que vem a seguir */
+}
+@media (max-width: 768px) {
+  .section-4 { padding-bottom: 28px; }
+}
 
 /* Layout: 4 colunas (h2, imagem, titles, desc+CTA) em uma única linha */
 .s4-row {
@@ -692,6 +698,312 @@ h2.h-section.center {
     transition: none !important;
   }
 }
+
+/* =====================================================
+   SEÇÃO 4.5 — FICHA TÉCNICA (tabela comparativa)
+   ===================================================== */
+.section-spec {
+  background: var(--bg-soft);   /* mesma cor da S4: sem seam */
+  padding: 40px 0 110px;        /* topo pequeno: encosta na S4 */
+}
+@media (max-width: 768px) {
+  .section-spec { padding: 28px 0 64px; }
+}
+
+/* ---------- Título: 1 linha, menor, abaixo do header da S4 ---------- */
+.spec-title {
+  font-family: var(--font-display);
+  font-size: clamp(18px, 1.7vw, 24px);
+  font-weight: 400;
+  color: var(--ilikia-deep);
+  letter-spacing: -0.005em;
+  text-align: center;
+  margin: 0 0 26px;
+  line-height: 1.2;
+}
+.spec-title em {
+  font-style: normal;
+  font-weight: 700;
+  color: var(--ilikia-teal);
+}
+
+/* ---------- Box da tabela com shine border ---------- */
+.spec-table-box {
+  position: relative;
+  background: var(--bg-soft);
+  border-radius: var(--radius-lg);
+  margin: 0 auto;
+  max-width: 1280px;
+  padding: 24px;
+}
+.spec-table-box::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background-image: radial-gradient(
+    transparent,
+    transparent,
+    #59bbb3,
+    #b06884,
+    #f69050,
+    transparent,
+    transparent
+  );
+  background-size: 300% 300%;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+  animation: shine-pulse 14s linear infinite;
+}
+@media (max-width: 720px) {
+  .spec-table-box { padding: 16px; }
+}
+
+/* ---------- Wrapper com scroll horizontal ---------- */
+.spec-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(15, 79, 77, 0.18) transparent;
+  border-radius: calc(var(--radius-lg) - 12px);
+}
+.spec-table-wrap::-webkit-scrollbar { height: 6px; }
+.spec-table-wrap::-webkit-scrollbar-thumb {
+  background: rgba(15, 79, 77, 0.22);
+  border-radius: 3px;
+}
+
+/* ---------- Tabela ---------- */
+.spec-tbl {
+  width: 100%;
+  min-width: 1100px;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-family: var(--font);
+}
+
+/* Larguras explícitas — Indicações ganha mais espaço */
+.spec-col-name         { width: 16%; }
+.spec-col-concentracao { width: 8%;  }
+.spec-col-particula    { width: 9%;  }
+.spec-col-mod          { width: 6%;  }
+.spec-col-reticulacao  { width: 9%;  }
+.spec-col-lidocaina    { width: 6%;  }
+.spec-col-quantidade   { width: 11%; }
+.spec-col-plano        { width: 13%; }
+.spec-col-indicacoes   { width: 22%; }
+
+.spec-tbl th,
+.spec-tbl td {
+  text-align: left;
+  vertical-align: middle;
+  padding: 20px 16px;
+  color: var(--ilikia-deep);
+  font-weight: 400;
+  transition: background-color 0.3s ease;
+}
+
+/* Header row — case natural (MoD continua MoD) */
+.spec-tbl thead th {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--text-soft);
+  padding: 8px 16px 18px;
+  border-bottom: 1.5px solid rgba(15, 79, 77, 0.22);
+  vertical-align: bottom;
+}
+.spec-th-corner {
+  padding: 0 !important;
+  border-bottom: 1.5px solid rgba(15, 79, 77, 0.22);
+}
+
+/* Linhas de produto — tintadas na cor, destaque horizontal no hover */
+.spec-row {
+  transition: background-color 0.4s ease;
+}
+.spec-row--fine          { background: rgba(8, 178, 172, 0.07);  }
+.spec-row--deep          { background: rgba(140, 46, 79, 0.07);  }
+.spec-row--contour       { background: rgba(226, 108, 63, 0.07); }
+.spec-row--fine:hover    { background: rgba(8, 178, 172, 0.16);  }
+.spec-row--deep:hover    { background: rgba(140, 46, 79, 0.16);  }
+.spec-row--contour:hover { background: rgba(226, 108, 63, 0.16); }
+
+/* Coluna do nome — mini-mockup CSS da caixa do produto */
+.spec-tbl tbody th[scope="row"] {
+  padding: 16px;
+}
+.spec-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 132px;
+  height: 70px;
+  padding: 8px 14px;
+  border-radius: 4px;
+  color: #f7f5f0;
+  overflow: hidden;
+  box-shadow:
+    0 6px 16px rgba(15, 79, 77, 0.14),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.5s ease;
+}
+/* gradiente vertical pra dar dimensão de caixa, sem virar foto */
+.spec-box::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.14) 0%, transparent 40%, transparent 60%, rgba(0, 0, 0, 0.18) 100%);
+  pointer-events: none;
+}
+.spec-box--fine    { background: var(--ilikia-teal); }
+.spec-box--deep    { background: var(--up-deep); }
+.spec-box--contour { background: var(--up-contour); }
+
+.spec-row:hover .spec-box {
+  transform: translateY(-2px);
+  box-shadow:
+    0 12px 24px rgba(15, 79, 77, 0.20),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+/* Número grande translúcido no canto sup-esquerdo */
+.spec-box-num {
+  position: absolute;
+  top: 4px;
+  left: 8px;
+  font-family: var(--font);
+  font-weight: 200;
+  font-size: 22px;
+  line-height: 0.85;
+  color: rgba(255, 255, 255, 0.30);
+  letter-spacing: -0.05em;
+  z-index: 1;
+}
+
+/* "UP" + variante INLINE no centro (horizontal) */
+.spec-box-mark {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 3px;
+  z-index: 1;
+}
+.spec-box-up {
+  font-family: var(--font);
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+}
+.spec-box-variant {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 0;
+  opacity: 0.95;
+  margin-left: 1px;
+}
+
+/* Assinatura no canto inf-direito */
+.spec-box-by {
+  position: absolute;
+  bottom: 5px;
+  right: 8px;
+  font-family: var(--font);
+  font-size: 6px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  z-index: 1;
+}
+
+/* Valores */
+.spec-tbl tbody td {
+  font-size: 14.5px;
+  line-height: 1.45;
+  font-weight: 500;
+}
+
+/* ---------- Ícones inline (Partícula + Reticulação) ---------- */
+.spec-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Partícula: bolinha que cresce conforme o tamanho */
+.spec-particle {
+  flex-shrink: 0;
+  display: inline-block;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.85;
+}
+.spec-particle[data-size="s"] { width: 6px;  height: 6px;  }
+.spec-particle[data-size="m"] { width: 10px; height: 10px; }
+.spec-particle[data-size="l"] { width: 14px; height: 14px; }
+
+/* Reticulação: 3 barras crescentes, nível 1/2/3 */
+.spec-bars {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 14px;
+}
+.spec-bars i {
+  width: 3px;
+  border-radius: 1px;
+  background: currentColor;
+  opacity: 0.22;
+}
+.spec-bars i:nth-child(1) { height: 6px;  }
+.spec-bars i:nth-child(2) { height: 10px; }
+.spec-bars i:nth-child(3) { height: 14px; }
+
+.spec-bars[data-level="1"] i:nth-child(1)                                  { opacity: 1; }
+.spec-bars[data-level="2"] i:nth-child(1),
+.spec-bars[data-level="2"] i:nth-child(2)                                  { opacity: 1; }
+.spec-bars[data-level="3"] i                                               { opacity: 1; }
+
+/* Plano de aplicação: 3 camadas empilhadas (derme/sub.sup/sub.prof) */
+.spec-depth {
+  flex-shrink: 0;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 14px;
+}
+.spec-depth i {
+  height: 4px;
+  border-radius: 1px;
+  background: currentColor;
+  opacity: 0.22;
+}
+.spec-depth[data-level="1"] i:nth-child(1) { opacity: 1; }
+.spec-depth[data-level="2"] i:nth-child(2) { opacity: 1; }
+.spec-depth[data-level="3"] i:nth-child(3) { opacity: 1; }
+
+/* Cor dos ícones segue a linha */
+.spec-row--fine    .spec-particle,
+.spec-row--fine    .spec-bars i,
+.spec-row--fine    .spec-depth i { color: var(--ilikia-teal); }
+.spec-row--deep    .spec-particle,
+.spec-row--deep    .spec-bars i,
+.spec-row--deep    .spec-depth i { color: var(--up-deep); }
+.spec-row--contour .spec-particle,
+.spec-row--contour .spec-bars i,
+.spec-row--contour .spec-depth i { color: var(--up-contour); }
 
 /* =====================================================
    SEÇÃO 5 — PERFORMANCE (fundo verde escuro)
@@ -1270,17 +1582,24 @@ input:focus, select:focus {
 }
 .footer-col a,
 .footer-col span {
-  color: rgba(255, 255, 255, 0.6);
   text-decoration: none;
   font-size: 13px;
   line-height: 1.5;
   display: inline-block;
+}
+.footer-col a {
+  color: rgba(255, 255, 255, 0.6);
   transition: color 0.3s ease,
               transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .footer-col a:hover {
   color: #fff;
   transform: translateX(3px);
+}
+.footer-col span {
+  color: rgba(255, 255, 255, 0.32);
+  font-style: italic;
+  cursor: default;
 }
 
 .footer-bottom {
