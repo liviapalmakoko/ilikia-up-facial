@@ -62,6 +62,35 @@ if (revealEls.length && 'IntersectionObserver' in window && !prefersReduced) {
   revealEls.forEach(el => el.classList.add('is-visible'));
 }
 
+// ============ WAVE-TEXT (Seção 3 — Pullquote, hover por palavra) ============
+const pqText = document.querySelector('.pq-text');
+if (pqText && !prefersReduced) {
+  const walker = document.createTreeWalker(pqText, NodeFilter.SHOW_TEXT);
+  const textNodes = [];
+  while (walker.nextNode()) textNodes.push(walker.currentNode);
+
+  let wordIndex = 0;
+  textNodes.forEach(node => {
+    const parent = node.parentNode;
+    const fragment = document.createDocumentFragment();
+    // split capturando whitespace para preservar espaços como text nodes
+    const tokens = node.textContent.split(/(\s+)/);
+    tokens.forEach(token => {
+      if (!token) return;
+      if (/^\s+$/.test(token)) {
+        fragment.appendChild(document.createTextNode(token));
+      } else {
+        const span = document.createElement('span');
+        span.className = 'pq-word';
+        span.style.setProperty('--i', wordIndex++);
+        span.textContent = token;
+        fragment.appendChild(span);
+      }
+    });
+    parent.replaceChild(fragment, node);
+  });
+}
+
 // ============ MÁSCARA DE TELEFONE BR ============
 const tel = document.getElementById('f-tel');
 if (tel) {

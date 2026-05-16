@@ -145,12 +145,18 @@ h2.h-section.center {
   letter-spacing: 0.02em;
   cursor: pointer;
   border: none;
-  transition: background 0.2s ease;
   text-align: center;
   font-family: inherit;
+  box-shadow: 0 4px 12px rgba(15, 79, 77, 0.10);
+  transition: background 0.35s ease,
+              color 0.35s ease,
+              transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s ease;
 }
 .btn-primary:hover {
   background: var(--ilikia-teal);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(8, 178, 172, 0.25);
 }
 
 /* =====================================================
@@ -179,14 +185,18 @@ h2.h-section.center {
   align-items: center;
   height: 36px;
   text-decoration: none;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
+.nav-logo:hover { transform: scale(1.04); }
 .nav-logo img {
   height: 100%;
   width: auto;
   display: block;
   filter: brightness(0) invert(1);
   opacity: 0.95;
+  transition: opacity 0.35s ease;
 }
+.nav-logo:hover img { opacity: 1; }
 
 .nav-links {
   display: none;
@@ -228,10 +238,17 @@ h2.h-section.center {
   background: #fff;
   color: var(--ilikia-deep);
   text-decoration: none;
-  transition: background 0.25s ease;
   white-space: nowrap;
+  box-shadow: 0 0 0 rgba(8, 178, 172, 0);
+  transition: background 0.35s ease,
+              transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s ease;
 }
-.nav-cta:hover { background: var(--ilikia-teal-soft); }
+.nav-cta:hover {
+  background: var(--ilikia-teal-soft);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(8, 178, 172, 0.28);
+}
 
 /* =====================================================
    SEÇÃO 1 — HERO (vídeo em tela cheia + texto sobreposto)
@@ -327,10 +344,12 @@ h2.h-section.center {
 .hero .btn-primary {
   background: #fff;
   color: var(--ilikia-deep);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
 }
 .hero .btn-primary:hover {
   background: var(--ilikia-teal-soft);
   color: var(--ilikia-deep);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
 }
 
 /* =====================================================
@@ -379,6 +398,8 @@ h2.h-section.center {
   color: var(--ilikia-deep);
   padding-left: 24px;
   position: relative;
+  cursor: default;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .s2-bullets li::before {
   content: "";
@@ -388,6 +409,13 @@ h2.h-section.center {
   width: 14px;
   height: 2px;
   background: var(--ilikia-teal);
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.35s ease;
+}
+.s2-bullets li:hover { transform: translateX(4px); }
+.s2-bullets li:hover::before {
+  width: 22px;
+  background: var(--ilikia-deep);
 }
 
 .s2-visual {
@@ -449,6 +477,16 @@ h2.h-section.center {
   font-style: italic;
   font-weight: 500;
   color: var(--ilikia-teal-soft);
+}
+
+/* Wave-text: cada palavra sobe levemente no hover, esquerda → direita (easing suave) */
+.pq-word {
+  display: inline-block;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.pq-text:hover .pq-word {
+  transform: translateY(-3px);
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) calc(var(--i, 0) * 0.06s);
 }
 
 /* =====================================================
@@ -1236,9 +1274,14 @@ input:focus, select:focus {
   text-decoration: none;
   font-size: 13px;
   line-height: 1.5;
-  transition: color 0.25s ease;
+  display: inline-block;
+  transition: color 0.3s ease,
+              transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.footer-col a:hover { color: #fff; }
+.footer-col a:hover {
+  color: #fff;
+  transform: translateX(3px);
+}
 
 .footer-bottom {
   display: flex;
@@ -1263,6 +1306,12 @@ input:focus, select:focus {
   width: auto;
   opacity: 0.75;
   filter: brightness(0) invert(1);
+  transition: opacity 0.35s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+.footer-logo-ilikia:hover {
+  opacity: 1;
+  transform: scale(1.06);
 }
 .footer-hashtag {
   font-family: var(--font-display);
