@@ -659,82 +659,166 @@ h2.h-section.center {
    SEÇÃO 5 — PERFORMANCE (fundo verde escuro)
    ===================================================== */
 .section-5 {
+  position: relative;
+  overflow: hidden;
   background:
-    radial-gradient(ellipse 60% 40% at 50% 0%, rgba(8, 178, 172, 0.12), transparent 70%),
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(8, 178, 172, 0.10), transparent 70%),
     var(--ilikia-deep);
 }
+.section-5 > .wrap { position: relative; z-index: 1; }
 .section-5 .h-section { color: #fff; }
 .section-5 .h-section em { color: var(--ilikia-teal-soft); }
-.section-5 .p-body { color: rgba(255, 255, 255, 0.78); }
+.section-5 .p-body { color: rgba(255, 255, 255, 0.72); }
 .section-5 .p-body sup { color: var(--ilikia-teal-soft); }
 
-.s5-head { text-align: center; margin-bottom: 56px; }
+.s5-head { text-align: center; margin-bottom: 64px; }
 
-/* Layout: 4 cards na primeira linha, 3 centralizados na segunda */
+/* ---------- Bolhas de gel subindo ---------- */
+.gel-bubbles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+.bubble {
+  position: absolute;
+  bottom: -120px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 30%,
+      rgba(255, 255, 255, 0.55) 0%,
+      rgba(200, 240, 235, 0.22) 28%,
+      rgba(127, 196, 190, 0.14) 55%,
+      rgba(8, 178, 172, 0.06) 80%,
+      transparent 100%);
+  box-shadow:
+    inset 0 -6px 14px rgba(8, 90, 88, 0.18),
+    inset 0 4px 8px rgba(255, 255, 255, 0.22),
+    0 0 24px rgba(127, 196, 190, 0.08);
+  opacity: 0;
+  filter: blur(0.4px);
+  animation: float-up linear infinite;
+  will-change: transform, opacity;
+}
+@keyframes float-up {
+  0%   { transform: translate3d(0, 0, 0) scale(0.85);    opacity: 0; }
+  8%   { opacity: 0.55; }
+  50%  { transform: translate3d(14px, -55vh, 0) scale(1); opacity: 0.6; }
+  92%  { opacity: 0.4; }
+  100% { transform: translate3d(-10px, -115vh, 0) scale(1.08); opacity: 0; }
+}
+.bubble.b1  { left: 5%;  width: 22px; height: 22px; animation-duration: 9.5s;  animation-delay:  0s;    }
+.bubble.b2  { left: 12%; width: 14px; height: 14px; animation-duration: 11.5s; animation-delay:  1s;    }
+.bubble.b3  { left: 22%; width: 38px; height: 38px; animation-duration: 13.5s; animation-delay:  2s;    }
+.bubble.b4  { left: 31%; width: 18px; height: 18px; animation-duration: 8.5s;  animation-delay:  0.5s;  }
+.bubble.b5  { left: 42%; width: 28px; height: 28px; animation-duration: 12.5s; animation-delay:  2.75s; }
+.bubble.b6  { left: 51%; width: 48px; height: 48px; animation-duration: 15s;   animation-delay:  1.25s; }
+.bubble.b7  { left: 60%; width: 16px; height: 16px; animation-duration: 10s;   animation-delay:  3.25s; }
+.bubble.b8  { left: 68%; width: 24px; height: 24px; animation-duration: 12s;   animation-delay:  1.75s; }
+.bubble.b9  { left: 77%; width: 34px; height: 34px; animation-duration: 13s;   animation-delay:  0.25s; }
+.bubble.b10 { left: 85%; width: 20px; height: 20px; animation-duration: 9s;    animation-delay:  2.25s; }
+.bubble.b11 { left: 93%; width: 42px; height: 42px; animation-duration: 14s;   animation-delay:  1.5s;  }
+.bubble.b12 { left: 38%; width: 12px; height: 12px; animation-duration: 7.5s;  animation-delay:  3.5s;  }
+
+@media (prefers-reduced-motion: reduce) {
+  .bubble { animation: none; opacity: 0; }
+}
+
+/* ---------- Grid de cards ---------- */
 .performance-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 16px;
   justify-content: center;
 }
 
 .perf-card {
-  background: var(--bg);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  position: relative;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius);
-  padding: 28px 24px;
+  padding: 30px 28px 30px;
+  width: calc((100% - 48px) / 4);
+  box-shadow: 0 0 0 rgba(8, 178, 172, 0);
+
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  gap: 14px;
-  width: calc((100% - 60px) / 4);  /* 4 cards por linha (3 gaps de 20px) */
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.35s ease,
-              box-shadow 0.35s ease;
+
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.45s ease,
+              background-color 0.45s ease,
+              box-shadow 0.55s ease;
 }
+.perf-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 120% 80% at 50% 0%, rgba(127, 196, 190, 0.28), transparent 65%);
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  pointer-events: none;
+}
+.perf-card > * { position: relative; z-index: 1; }
 .perf-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--ilikia-teal-soft);
-  box-shadow: 0 12px 32px rgba(8, 178, 172, 0.18);
+  transform: translateY(-8px);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(127, 196, 190, 0.6);
+  box-shadow:
+    0 22px 50px rgba(0, 0, 0, 0.25),
+    0 0 60px rgba(8, 178, 172, 0.22);
 }
+.perf-card:hover::before { opacity: 1; }
+
 @media (max-width: 1000px) {
-  .perf-card { width: calc((100% - 20px) / 2); }  /* 2 por linha */
+  .perf-card { width: calc((100% - 16px) / 2); }
 }
 @media (max-width: 540px) {
-  .perf-card { width: 100%; }
+  .perf-card { width: 100%; padding: 28px 24px; }
 }
 
 .perf-icon {
-  width: 48px;
-  height: 48px;
+  width: 56px;
+  height: 56px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--ilikia-teal);
-  margin-bottom: 2px;
+  border-radius: 50%;
+  background: rgba(127, 196, 190, 0.12);
+  border: 1px solid rgba(127, 196, 190, 0.22);
+  color: var(--ilikia-teal-soft);
+  margin-bottom: 22px;
+  transition: background-color 0.4s ease,
+              border-color 0.4s ease,
+              transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.perf-icon svg {
-  width: 100%;
-  height: 100%;
+.perf-icon svg { width: 26px; height: 26px; display: block; }
+.perf-card:hover .perf-icon {
+  background: rgba(127, 196, 190, 0.20);
+  border-color: rgba(127, 196, 190, 0.45);
+  transform: translateY(-2px);
 }
 
 .perf-title {
   font-family: var(--font);
-  font-size: 17px;
-  font-weight: 700;
-  line-height: 1.25;
-  letter-spacing: 0.01em;
-  color: var(--ilikia-deep);
-  margin-bottom: -4px;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.003em;
+  color: #fff;
+  margin: 0 0 12px;
 }
 
 .perf-desc {
-  font-size: 14px;
-  line-height: 1.5;
-  color: var(--text-soft);
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.62);
+  margin: 0;
 }
-.perf-desc sup { color: var(--ilikia-teal); }
+.perf-desc sup { color: var(--ilikia-teal-soft); }
 
 /* =====================================================
    SEÇÃO 6 — FORMULÁRIO
