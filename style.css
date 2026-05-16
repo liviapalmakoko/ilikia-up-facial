@@ -74,6 +74,18 @@
   }
 }
 
+/* Kill-switch global pra usuários que preferem menos movimento (acessibilidade) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 html { scroll-behavior: smooth; }
 
 body {
@@ -238,9 +250,12 @@ h2.h-section.center {
   border-radius: 999px;
   background: #fff;
   color: var(--ilikia-deep);
+  border: 1.5px solid transparent;
   text-decoration: none;
   white-space: nowrap;
   transition: background 0.35s ease,
+              color 0.35s ease,
+              border-color 0.35s ease,
               transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .nav-cta::before {
@@ -252,7 +267,9 @@ h2.h-section.center {
   animation: cta-glow 2.4s ease-in-out infinite;
 }
 .nav-cta:hover {
-  background: var(--ilikia-teal-soft);
+  background: transparent;
+  color: #fff;
+  border-color: #fff;
   transform: translateY(-2px);
 }
 
@@ -363,17 +380,35 @@ h2.h-section.center {
 }
 .hero-tag sup { color: var(--ilikia-teal-soft); }
 
-/* Botão no hero — fundo branco, texto petróleo */
+/* Botão no hero — fundo branco, texto petróleo; vira ghost branco no hover */
 .hero .btn-primary {
   background: #fff;
   color: var(--ilikia-deep);
+  border: 2px solid transparent;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+  transition: background 0.35s ease,
+              color 0.35s ease,
+              border-color 0.35s ease,
+              transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s ease;
 }
 .hero .btn-primary:hover {
-  background: var(--ilikia-teal-soft);
-  color: var(--ilikia-deep);
+  background: transparent;
+  color: #fff;
+  border-color: #fff;
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
 }
+
+/* Hover por produto no nome da linha */
+.hero-product {
+  display: inline-block;
+  cursor: default;
+  transition: color 0.35s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hero-product--fine:hover    { color: #59bbb3; transform: translateY(-2px); }
+.hero-product--deep:hover    { color: #b06884; transform: translateY(-2px); }
+.hero-product--contour:hover { color: #f69050; transform: translateY(-2px); }
+
 
 /* =====================================================
    SEÇÃO 2 — NATURALIDADE + SEGURANÇA (duas colunas)
@@ -499,6 +534,35 @@ h2.h-section.center {
 .pq-text em {
   font-style: italic;
   font-weight: 500;
+  color: var(--ilikia-teal-soft);
+}
+
+/* Assinatura da marca após a frase — fecha o pull-quote */
+.pq-signature {
+  margin: 44px auto 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(13px, 1vw, 16px);
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.55);
+  position: relative;
+  padding-top: 28px;
+}
+.pq-signature::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 36px;
+  height: 1px;
+  background: var(--ilikia-teal-soft);
+  opacity: 0.55;
+}
+.pq-signature em {
+  font-style: italic;
+  font-weight: 400;
   color: var(--ilikia-teal-soft);
 }
 
@@ -921,6 +985,50 @@ h2.h-section.center {
 .spec-bars[data-level="2"] i:nth-child(1),
 .spec-bars[data-level="2"] i:nth-child(2)                                  { opacity: 1; }
 .spec-bars[data-level="3"] i                                               { opacity: 1; }
+
+/* Mobile: vira cards empilhados (mais leitor-friendly que scroll horizontal) */
+@media (max-width: 640px) {
+  .spec-tbl { min-width: 0; table-layout: auto; }
+  .spec-tbl colgroup,
+  .spec-tbl thead,
+  .spec-th-corner { display: none; }
+  .spec-tbl,
+  .spec-tbl tbody,
+  .spec-tbl tr,
+  .spec-tbl td,
+  .spec-tbl th[scope="row"] { display: block; width: 100%; }
+
+  .spec-tbl tbody tr.spec-row {
+    margin-bottom: 18px;
+    padding: 18px 18px 6px;
+    border-radius: 12px;
+  }
+  .spec-tbl tbody tr.spec-row:last-child { margin-bottom: 0; }
+
+  .spec-tbl tbody th[scope="row"] {
+    padding: 0 0 14px;
+    text-align: center;
+  }
+  .spec-prod-img { margin: 0 auto; max-width: 140px; }
+
+  .spec-tbl tbody td {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(15, 79, 77, 0.08);
+    font-size: 14px;
+  }
+  .spec-tbl tbody td:last-child { border-bottom: none; }
+
+  .spec-tbl tbody td::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 4px;
+  }
+}
 
 /* Plano de aplicação: 3 camadas empilhadas (derme/sub.sup/sub.prof) */
 .spec-depth {
@@ -1420,6 +1528,46 @@ input:focus, select:focus {
   margin-top: 1px;
   color: var(--ilikia-teal);
 }
+
+/* Consent LGPD */
+.form-consent,
+.form-consent * {
+  text-transform: none;
+  letter-spacing: 0;
+}
+.form-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  margin: 2px 0 6px;
+  font-family: var(--font);
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text-mute);
+  cursor: pointer;
+  user-select: none;
+}
+.form-consent input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  margin: 2px 0 0;
+  border: none;
+  padding: 0;
+  accent-color: var(--ilikia-teal);
+  cursor: pointer;
+}
+.form-consent strong {
+  color: var(--ilikia-deep);
+  font-weight: 600;
+}
+.form-consent a {
+  color: var(--ilikia-teal);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.form-consent a:hover { color: var(--ilikia-deep); }
 
 .form-success {
   display: none;
