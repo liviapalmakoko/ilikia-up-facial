@@ -304,22 +304,83 @@
     <div class="s6-grid">
       <div class="s6-head reveal">
         <h2 class="h-section">
-          Entre em contato para saber mais sobre os preenchedores da
-          <em>Linha UP!</em>
+          Entre em contato<br>
+          para saber mais sobre os<br>
+          preenchedores da <em>Linha UP!</em>
         </h2>
-        <p>
-          Preencha os dados para receber as informações, materiais e condições
-          exclusivas!
+        <p class="s6-intro">
+          Receba materiais, conteúdo técnico-científico e condições exclusivas
+          diretamente da Ilikia.
         </p>
+
+        <ul class="s6-benefits">
+          <li class="s6-benefit">
+            <span class="s6-benefit-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 4 L15 4 L19 8 L19 20 L7 20 Z"/>
+                <path d="M15 4 L15 8 L19 8"/>
+                <line x1="10" y1="13" x2="16" y2="13"/>
+                <line x1="10" y1="16" x2="14" y2="16"/>
+              </svg>
+            </span>
+            <div class="s6-benefit-text">
+              <p class="s6-benefit-title">Material técnico-científico</p>
+              <p class="s6-benefit-desc">Estudos clínicos, dossiês e fichas técnicas da Linha UP</p>
+            </div>
+          </li>
+
+          <li class="s6-benefit">
+            <span class="s6-benefit-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 13 L11 4 L20 4 L20 13 L11 22 Z"/>
+                <circle cx="15.5" cy="8.5" r="1.5"/>
+              </svg>
+            </span>
+            <div class="s6-benefit-text">
+              <p class="s6-benefit-title">Condições comerciais exclusivas</p>
+              <p class="s6-benefit-desc">Parceria comercial direta com a Ilikia</p>
+            </div>
+          </li>
+
+          <li class="s6-benefit">
+            <span class="s6-benefit-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9 L12 5 L21 9 L12 13 Z"/>
+                <path d="M7 11 L7 16 C 7 17, 9 19, 12 19 C 15 19, 17 17, 17 16 L 17 11"/>
+                <line x1="21" y1="9" x2="21" y2="14"/>
+              </svg>
+            </span>
+            <div class="s6-benefit-text">
+              <p class="s6-benefit-title">Treinamentos e atualizações</p>
+              <p class="s6-benefit-desc">Conteúdo educativo contínuo para sua prática</p>
+            </div>
+          </li>
+
+          <li class="s6-benefit">
+            <span class="s6-benefit-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 15 L5 11 C 5 7, 8 4, 12 4 C 16 4, 19 7, 19 11 L 19 15"/>
+                <rect x="3" y="14" width="4" height="6" rx="1"/>
+                <rect x="17" y="14" width="4" height="6" rx="1"/>
+                <path d="M19 19 C 19 21, 16 21, 14 21"/>
+              </svg>
+            </span>
+            <div class="s6-benefit-text">
+              <p class="s6-benefit-title">Suporte especializado</p>
+              <p class="s6-benefit-desc">Equipe técnica disponível para dúvidas clínicas</p>
+            </div>
+          </li>
+        </ul>
       </div>
 
-      <form class="form-card reveal" id="leadForm" novalidate>
+      <div class="form-shell reveal">
+      <form class="form-card" id="leadForm" novalidate>
         <div class="form-row two">
-          <div>
-            <label for="f-nome">Nome</label>
-            <input id="f-nome" name="nome" type="text" placeholder="Seu nome completo" required>
+          <div class="form-field">
+            <label for="f-nome">Nome completo</label>
+            <input id="f-nome" name="nome" type="text" placeholder="Digite seu nome" required>
           </div>
-          <div>
+          <div class="form-field">
             <label for="f-esp">Especialidade</label>
             <select id="f-esp" name="especialidade" required>
               <option value="">Selecione</option>
@@ -334,21 +395,21 @@
           </div>
         </div>
         <div class="form-row two">
-          <div>
+          <div class="form-field">
             <label for="f-email">E-mail profissional</label>
             <input id="f-email" name="email" type="email" placeholder="voce@clinica.com.br" required>
           </div>
-          <div>
+          <div class="form-field">
             <label for="f-tel">WhatsApp</label>
             <input id="f-tel" name="whatsapp" type="tel" placeholder="(00) 00000-0000" required>
           </div>
         </div>
         <div class="form-row two">
-          <div>
+          <div class="form-field">
             <label for="f-crm">CRM / Registro</label>
             <input id="f-crm" name="crm" type="text" placeholder="000000-UF" required>
           </div>
-          <div>
+          <div class="form-field">
             <label for="f-uf">Estado</label>
             <select id="f-uf" name="uf" required>
               <option value="">UF</option>
@@ -363,16 +424,24 @@
           </div>
         </div>
         <button type="submit" class="btn-submit">
-          <span id="submitText">Enviar</span>
+          <span id="submitText">Solicitar acesso</span>
+          <svg class="btn-submit-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="4" y1="10" x2="16" y2="10"/>
+            <path d="M11 5 L16 10 L11 15"/>
+          </svg>
         </button>
         <p class="form-disclaimer">
-          Conteúdo destinado exclusivamente a profissionais de saúde habilitados.
-          Ao enviar, você concorda em receber comunicações da ILIKIA.
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="7" width="10" height="7" rx="1"/>
+            <path d="M5 7 L5 5 C 5 3, 6.5 2, 8 2 C 9.5 2, 11 3, 11 5 L 11 7"/>
+          </svg>
+          <span>Conteúdo destinado exclusivamente a profissionais de saúde habilitados. Ao enviar, você concorda em receber comunicações da ILIKIA.</span>
         </p>
         <p class="form-success" id="formSuccess" role="status" aria-live="polite">
           Solicitação recebida. Em breve nossa equipe entrará em contato com você.
         </p>
       </form>
+      </div>
     </div>
   </div>
 </section>

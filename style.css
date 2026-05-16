@@ -824,85 +824,253 @@ h2.h-section.center {
    SEÇÃO 6 — FORMULÁRIO
    ===================================================== */
 .section-6 {
-  background: linear-gradient(135deg, var(--ilikia-deep) 0%, var(--ilikia-teal) 100%);
-  color: #fff;
-  padding: 96px 0;
+  background: #e1e3e0;
+  color: var(--ilikia-deep);
+  padding: 110px 0;
+}
+
+/* Esconde <br> forçados do título no mobile pra evitar quebras estranhas */
+@media (max-width: 600px) {
+  .s6-head h2 br { display: none; }
 }
 
 .s6-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 80px;
   align-items: start;
 }
-@media (max-width: 900px) { .s6-grid { grid-template-columns: 1fr; gap: 40px; } }
+@media (max-width: 900px) { .s6-grid { grid-template-columns: 1fr; gap: 48px; } }
+
+/* ---------- Lado esquerdo ---------- */
+.s6-head {
+  display: flex;
+  flex-direction: column;
+  padding: 4px 0;
+}
 
 .s6-head h2 {
-  color: #fff;
-  font-weight: 300;
+  color: var(--ilikia-deep);
+  margin: 0;
 }
-.s6-head h2 .accent {
-  color: #fff;
-  font-weight: 700;
+.s6-head h2 em {
+  color: var(--ilikia-teal);
+  font-style: italic;
 }
-.s6-head p {
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 17px;
-  margin-top: 16px;
-  max-width: 440px;
+
+.s6-intro {
+  color: var(--text-soft);
+  font-size: 16px;
   line-height: 1.6;
+  margin: 20px 0 0;
+  max-width: 460px;
 }
 
+.s6-benefits {
+  list-style: none;
+  margin: 36px 0 28px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.s6-benefit {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.s6-benefit:hover { transform: translateX(4px); }
+
+.s6-benefit-icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(15, 79, 77, 0.06);
+  border: 1px solid rgba(15, 79, 77, 0.14);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ilikia-deep);
+  transition: background-color 0.4s ease,
+              border-color 0.4s ease,
+              color 0.4s ease,
+              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.s6-benefit-icon svg {
+  width: 19px;
+  height: 19px;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.s6-benefit:hover .s6-benefit-icon {
+  background: var(--ilikia-teal);
+  border-color: var(--ilikia-teal);
+  color: #fff;
+  transform: scale(1.08);
+}
+.s6-benefit:hover .s6-benefit-icon svg { transform: rotate(-6deg); }
+
+.s6-benefit-text { padding-top: 2px; }
+.s6-benefit-title {
+  font-family: var(--font);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ilikia-deep);
+  margin: 0 0 3px;
+  line-height: 1.25;
+  transition: color 0.3s ease;
+}
+.s6-benefit:hover .s6-benefit-title { color: var(--ilikia-teal); }
+
+.s6-benefit-desc {
+  font-size: 13.5px;
+  color: var(--text-soft);
+  margin: 0;
+  line-height: 1.45;
+}
+
+/* ---------- Form shell (carrega o glow externo) ---------- */
+.form-shell {
+  position: relative;
+}
+.form-shell::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: calc(var(--radius-lg) + 4px);
+  background-image: radial-gradient(
+    transparent,
+    transparent,
+    #59bbb3,
+    #b06884,
+    #f69050,
+    transparent,
+    transparent
+  );
+  background-size: 300% 300%;
+  filter: blur(12px);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+  will-change: opacity, background-position;
+  animation: shine-pulse 14s linear infinite;
+  transition: opacity 0.6s ease;
+}
+.form-shell:hover::after { opacity: 0.9; }
+
+/* ---------- Form card com shine border (21st.dev style) ---------- */
 .form-card {
-  background: #fff;
+  position: relative;
+  z-index: 1;
+  background: #e1e3e0;
   border-radius: var(--radius-lg);
-  padding: 40px;
-  box-shadow: var(--shadow-strong);
+  padding: 56px 44px 44px;
   color: var(--text);
+  box-shadow:
+    0 18px 40px rgba(15, 79, 77, 0.08),
+    0 3px 10px rgba(15, 79, 77, 0.04);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.5s ease;
 }
-@media (max-width: 520px) { .form-card { padding: 28px 22px; } }
+.form-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background-image: radial-gradient(
+    transparent,
+    transparent,
+    #59bbb3,
+    #b06884,
+    #f69050,
+    transparent,
+    transparent
+  );
+  background-size: 300% 300%;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+  will-change: background-position;
+  animation: shine-pulse 14s linear infinite;
+}
+.form-shell:hover .form-card {
+  transform: translateY(-4px);
+  box-shadow:
+    0 28px 56px rgba(15, 79, 77, 0.14),
+    0 6px 18px rgba(15, 79, 77, 0.07);
+}
 
-.form-row { margin-bottom: 18px; }
+@keyframes shine-pulse {
+  0%   { background-position: 0% 0%;     }
+  50%  { background-position: 100% 100%; }
+  100% { background-position: 0% 0%;     }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .form-card::before,
+  .form-shell::after { animation: none; }
+}
+
+@media (max-width: 520px) { .form-card { padding: 36px 24px 28px; } }
+
+.form-row { margin-bottom: 28px; }
 .form-row.two {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 14px;
+  gap: 24px;
 }
-@media (max-width: 520px) { .form-row.two { grid-template-columns: 1fr; } }
+@media (max-width: 520px) { .form-row.two { grid-template-columns: 1fr; gap: 20px; } }
+
+.form-field { position: relative; }
 
 label {
   display: block;
-  font-size: 13px;
-  font-weight: 600;
+  font-family: var(--font);
+  font-size: 11px;
+  font-weight: 700;
   color: var(--ilikia-deep);
   margin-bottom: 6px;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
+
 input, select {
   width: 100%;
-  padding: 12px 16px;
-  border: 1.5px solid var(--border);
-  border-radius: var(--radius-sm);
+  padding: 10px 0;
+  border: none;
+  border-bottom: 1.5px solid rgba(15, 79, 77, 0.15);
+  border-radius: 0;
   font-size: 15px;
-  background: #fff;
-  transition: border-color 0.2s ease;
+  font-family: inherit;
+  color: var(--ilikia-deep);
+  background: transparent;
+  transition: border-color 0.3s ease;
 }
+input::placeholder { color: rgba(15, 79, 77, 0.32); }
+
 select {
   appearance: none;
   -webkit-appearance: none;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path d='M0 0 L5 6 L10 0' fill='%2308B2AC'/></svg>");
   background-repeat: no-repeat;
-  background-position: right 14px center;
-  padding-right: 36px;
+  background-position: right 4px center;
+  padding-right: 24px;
 }
 input:focus, select:focus {
   outline: none;
-  border-color: var(--ilikia-teal);
+  border-bottom-color: var(--ilikia-teal);
 }
 
 .btn-submit {
   width: 100%;
-  padding: 16px;
+  padding: 18px 28px;
   border-radius: 999px;
   background: var(--ilikia-deep);
   color: #fff;
@@ -910,23 +1078,47 @@ input:focus, select:focus {
   font-family: inherit;
   font-size: 15px;
   font-weight: 600;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
   cursor: pointer;
-  transition: background 0.2s ease;
-  margin-top: 8px;
+  margin-top: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  transition: background 0.35s ease, gap 0.35s ease;
 }
-.btn-submit:hover { background: var(--ilikia-teal); }
+.btn-submit-arrow {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-submit:hover {
+  background: var(--ilikia-teal);
+  gap: 18px;
+}
+.btn-submit:hover .btn-submit-arrow { transform: translateX(3px); }
 
 .form-disclaimer {
   font-size: 12px;
   color: var(--text-mute);
-  margin-top: 14px;
+  margin-top: 18px;
   line-height: 1.5;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
 }
+.form-disclaimer svg {
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  margin-top: 1px;
+  color: var(--ilikia-teal);
+}
+
 .form-success {
   display: none;
   text-align: center;
-  padding: 16px 0;
+  padding: 16px 0 0;
   color: var(--ilikia-teal);
   font-size: 15px;
   font-weight: 600;
