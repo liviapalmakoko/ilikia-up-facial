@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>UP Facial by ILIKIA · Linha de preenchedores com Tecnologia R²</title>
-<meta name="description" content="Linha UP Facial — preenchedores de ácido hialurônico com Tecnologia R² patenteada. UP Fine, UP Deep e UP Contour para diferentes planos, indicações e níveis de estruturação.">
+<meta name="description" content="Linha UP Facial: preenchedores de ácido hialurônico com Tecnologia R² patenteada. UP Fine, UP Deep e UP Contour para diferentes planos, indicações e níveis de estruturação.">
 
 <!-- Favicon -->
 <link rel="icon" type="image/png" href="assets/images/logo-up-facial.png">
@@ -16,14 +16,14 @@
 <meta property="og:site_name" content="ILIKIA">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:title" content="UP Facial by ILIKIA · Linha de preenchedores com Tecnologia R²">
-<meta property="og:description" content="Preenchedores faciais de ácido hialurônico com Tecnologia R² patenteada — exclusivo para profissionais.">
+<meta property="og:description" content="Preenchedores faciais de ácido hialurônico com Tecnologia R² patenteada. Conteúdo exclusivo para profissionais.">
 <meta property="og:image" content="assets/images/hero.png">
-<meta property="og:image:alt" content="UP Facial — Linha Ilikia">
+<meta property="og:image:alt" content="UP Facial · Linha Ilikia">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="UP Facial by ILIKIA · Linha de preenchedores com Tecnologia R²">
-<meta name="twitter:description" content="Preenchedores faciais de ácido hialurônico com Tecnologia R² patenteada — exclusivo para profissionais.">
+<meta name="twitter:description" content="Preenchedores faciais de ácido hialurônico com Tecnologia R² patenteada. Conteúdo exclusivo para profissionais.">
 <meta name="twitter:image" content="assets/images/hero.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,6 +31,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="style.css">
+
+<!-- Meta Pixel (conta Ilikia, compartilhado com nanogen + upfull) -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '666277432116339');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=666277432116339&ev=PageView&noscript=1"/></noscript>
 </head>
 <body>
 
@@ -111,7 +123,7 @@
       </div>
 
       <div class="s2-visual reveal">
-        <img src="assets/images/tecnologia-r2.png" alt="Tecnologia R² — Linha UP">
+        <img src="assets/images/tecnologia-r2.png" alt="Tecnologia R², Linha UP">
       </div>
     </div>
   </div>
@@ -150,13 +162,13 @@
 
       <div class="hover-slider-images reveal">
         <div class="slide-image slide-fine" data-slide="0" data-active="true">
-          <img src="assets/images/up-fine.png" alt="UP Fine — áreas de aplicação">
+          <img src="assets/images/up-fine.png" alt="UP Fine, áreas de aplicação">
         </div>
         <div class="slide-image slide-deep" data-slide="1">
-          <img src="assets/images/up-deep.png" alt="UP Deep — áreas de aplicação">
+          <img src="assets/images/up-deep.png" alt="UP Deep, áreas de aplicação">
         </div>
         <div class="slide-image slide-contour" data-slide="2">
-          <img src="assets/images/up-contour.png" alt="UP Contour — áreas de aplicação">
+          <img src="assets/images/up-contour.png" alt="UP Contour, áreas de aplicação">
         </div>
       </div>
 
@@ -481,7 +493,8 @@
       </div>
 
       <div class="form-shell reveal">
-      <form class="form-card" id="leadForm" novalidate>
+      <form class="form-card" id="leadForm" novalidate onsubmit="return submitForm(event)">
+        <div id="formDefault">
         <div class="form-row two">
           <div class="form-field">
             <label for="f-nome">Nome completo</label>
@@ -508,7 +521,7 @@
           </div>
           <div class="form-field">
             <label for="f-tel">WhatsApp</label>
-            <input id="f-tel" name="whatsapp" type="tel" placeholder="(00) 00000-0000" required>
+            <input id="f-tel" name="telefone" type="tel" placeholder="(00) 00000-0000" required>
           </div>
         </div>
         <div class="form-row two">
@@ -518,7 +531,7 @@
           </div>
           <div class="form-field">
             <label for="f-uf">Estado</label>
-            <select id="f-uf" name="uf" required>
+            <select id="f-uf" name="estado" required>
               <option value="">UF</option>
               <option>AC</option><option>AL</option><option>AP</option><option>AM</option>
               <option>BA</option><option>CE</option><option>DF</option><option>ES</option>
@@ -535,13 +548,14 @@
           <span>Declaro ser <strong>profissional de saúde habilitado</strong> e autorizo a ILIKIA a tratar meus dados e me enviar comunicações sobre a Linha UP, conforme a <a href="#politica" target="_blank" rel="noopener">Política de Privacidade</a>.</span>
         </label>
 
-        <button type="submit" class="btn-submit">
+        <button type="submit" class="btn-submit" id="submitBtn">
           <span id="submitText">Solicitar acesso</span>
           <svg class="btn-submit-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <line x1="4" y1="10" x2="16" y2="10"/>
             <path d="M11 5 L16 10 L11 15"/>
           </svg>
         </button>
+        <p class="form-error" id="formError" role="alert" aria-live="assertive"></p>
         <p class="form-disclaimer">
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <rect x="3" y="7" width="10" height="7" rx="1"/>
@@ -549,9 +563,15 @@
           </svg>
           <span>Conteúdo destinado exclusivamente a profissionais de saúde habilitados nos termos da Resolução CFM e regulamentações vigentes da ANVISA.</span>
         </p>
-        <p class="form-success" id="formSuccess" role="status" aria-live="polite">
-          Solicitação recebida. Em breve nossa equipe entrará em contato com você.
-        </p>
+        </div>
+        <div class="form-success" id="formSuccess" role="status" aria-live="polite" hidden>
+          <svg class="form-success-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="24" cy="24" r="20"/>
+            <path d="M15 24 L22 31 L34 18"/>
+          </svg>
+          <h3 class="form-success-title">Solicitação recebida</h3>
+          <p class="form-success-text">Em breve nossa equipe entrará em contato com você por e-mail ou WhatsApp.</p>
+        </div>
       </form>
       </div>
     </div>

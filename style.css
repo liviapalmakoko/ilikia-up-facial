@@ -1591,15 +1591,52 @@ input:focus, select:focus {
 }
 .form-consent a:hover { color: var(--ilikia-deep); }
 
-.form-success {
-  display: none;
-  text-align: center;
-  padding: 16px 0 0;
-  color: var(--ilikia-teal);
-  font-size: 15px;
-  font-weight: 600;
+.form-error {
+  margin: 12px 0 0;
+  padding: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #b04a3a;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  min-height: 0;
 }
-.form-success.show { display: block; }
+.form-error.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.form-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px 0;
+  gap: 18px;
+}
+.form-success[hidden] { display: none; }
+.form-success-icon {
+  width: 56px;
+  height: 56px;
+  color: var(--ilikia-teal);
+}
+.form-success-title {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2.2vw, 28px);
+  font-weight: 500;
+  color: var(--ilikia-deep);
+  line-height: 1.2;
+  margin: 0;
+}
+.form-success-text {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--text-soft);
+  max-width: 360px;
+  margin: 0;
+}
 
 /* =====================================================
    REFERÊNCIAS (bloco dentro do footer)
