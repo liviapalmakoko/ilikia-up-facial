@@ -290,6 +290,105 @@ h2.h-section.center {
   .btn-submit::before { animation: none; }
 }
 
+/* Hambúrguer + drawer mobile (esconde em ≥880px) */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  margin-left: auto;
+}
+.nav-toggle-line {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: #fff;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.nav-toggle[aria-expanded="true"] .nav-toggle-line:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .nav-toggle-line:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] .nav-toggle-line:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+.nav-mobile {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 88px 28px 40px;
+  background: var(--ilikia-deep);
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 49;
+  transform: translateY(-12px);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.35s ease;
+  border-bottom: 1px solid rgba(127, 196, 190, 0.18);
+  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.32);
+}
+.nav-mobile[data-open="true"] {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+.nav-mobile-link {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  color: rgba(255, 255, 255, 0.86);
+  text-decoration: none;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(127, 196, 190, 0.10);
+  transition: color 0.25s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nav-mobile-link:hover,
+.nav-mobile-link:focus-visible {
+  color: var(--ilikia-teal-soft);
+  transform: translateX(4px);
+  outline: none;
+}
+.nav-mobile-cta {
+  margin-top: 20px;
+  padding: 16px 28px;
+  background: #fff;
+  color: var(--ilikia-deep);
+  border-radius: 999px;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+.nav-mobile-cta:hover,
+.nav-mobile-cta:focus-visible {
+  background: var(--ilikia-teal);
+  color: #fff;
+  outline: none;
+}
+
+@media (max-width: 879px) {
+  .nav-toggle { display: inline-flex; }
+  .nav-cta { display: none; }
+  .nav-mobile { display: flex; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-toggle-line,
+  .nav-mobile { transition: none !important; }
+}
+
 /* =====================================================
    SEÇÃO 1 — HERO (vídeo em tela cheia + texto sobreposto)
    ===================================================== */

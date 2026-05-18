@@ -5,6 +5,31 @@
   const anoEl = document.getElementById('ano');
   if (anoEl) anoEl.textContent = new Date().getFullYear();
 
+  // ============ MENU MOBILE (hambúrguer) ============
+  const navToggle = document.getElementById('navToggle');
+  const navMobile = document.getElementById('navMobile');
+  if (navToggle && navMobile) {
+    const closeMenu = () => {
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.setAttribute('aria-label', 'Abrir menu');
+      navMobile.setAttribute('data-open', 'false');
+      navMobile.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    };
+    const openMenu = () => {
+      navToggle.setAttribute('aria-expanded', 'true');
+      navToggle.setAttribute('aria-label', 'Fechar menu');
+      navMobile.setAttribute('data-open', 'true');
+      navMobile.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    };
+    navToggle.addEventListener('click', () => {
+      navToggle.getAttribute('aria-expanded') === 'true' ? closeMenu() : openMenu();
+    });
+    navMobile.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+  }
+
   // ============ HOVER SLIDER (Seção 4 — Linha UP) ============
   const titles = document.querySelectorAll('.slide-title');
   if (titles.length) {
