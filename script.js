@@ -89,6 +89,40 @@
     revealEls.forEach(el => el.classList.add('is-visible'));
   }
 
+  // ============ PARALLAX SEÇÃO 2 (cada produto reage com profundidade própria) ============
+  const s2Visual = document.querySelector('.s2-visual');
+  const isTouch = window.matchMedia('(hover: none)').matches;
+  if (s2Visual && !prefersReduced && !isTouch) {
+    const products = [
+      { el: s2Visual.querySelector('.s2-product-wrap--fine'),    depth: 0.55 },
+      { el: s2Visual.querySelector('.s2-product-wrap--deep'),    depth: 1.25 },
+      { el: s2Visual.querySelector('.s2-product-wrap--contour'), depth: 0.75 },
+    ].filter(p => p.el);
+    if (products.length) {
+      let rafId = null;
+      let targetX = 0, targetY = 0;
+      const apply = () => {
+        products.forEach(p => {
+          const tx = targetX * 18 * p.depth;
+          const ty = targetY * 12 * p.depth;
+          p.el.style.transform = `translate3d(${tx}px, ${ty}px, 0)`;
+        });
+        rafId = null;
+      };
+      s2Visual.addEventListener('mousemove', (e) => {
+        const rect = s2Visual.getBoundingClientRect();
+        targetX = (e.clientX - rect.left) / rect.width - 0.5;
+        targetY = (e.clientY - rect.top) / rect.height - 0.5;
+        if (!rafId) rafId = requestAnimationFrame(apply);
+      });
+      s2Visual.addEventListener('mouseleave', () => {
+        targetX = 0;
+        targetY = 0;
+        if (!rafId) rafId = requestAnimationFrame(apply);
+      });
+    }
+  }
+
   // ============ WAVE-TEXT (Seção 3, hover por palavra) ============
   const pqText = document.querySelector('.pq-text');
   if (pqText && !prefersReduced) {

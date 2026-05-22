@@ -410,16 +410,6 @@ h2.h-section.center {
   z-index: 0;
 }
 
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background:
-    linear-gradient(90deg, rgba(15, 79, 77, 0.78) 0%, rgba(15, 79, 77, 0.55) 45%, rgba(15, 79, 77, 0.25) 100%),
-    linear-gradient(180deg, rgba(15, 79, 77, 0.30) 0%, transparent 35%, rgba(15, 79, 77, 0.55) 100%);
-}
-
 .hero-content {
   position: relative;
   z-index: 2;
@@ -447,7 +437,7 @@ h2.h-section.center {
   color: #fff;
   margin-bottom: 28px;
   max-width: 720px;
-  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.18);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55), 0 2px 16px rgba(0, 0, 0, 0.45);
 }
 .headline em {
   font-style: italic;
@@ -462,6 +452,7 @@ h2.h-section.center {
   color: #fff;
   margin-bottom: 4px;
   letter-spacing: 0.04em;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55), 0 2px 10px rgba(0, 0, 0, 0.35);
 }
 .hero-products .sep {
   color: var(--ilikia-teal-soft);
@@ -470,20 +461,22 @@ h2.h-section.center {
 }
 .hero-products-sub {
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(255, 255, 255, 0.85);
   margin-bottom: 24px;
   font-style: italic;
   font-family: var(--font-display);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .hero-tag {
   font-size: 16px;
-  color: rgba(255, 255, 255, 0.88);
+  color: #fff;
   margin-bottom: 36px;
   max-width: 540px;
   line-height: 1.65;
   padding-top: 18px;
-  border-top: 1px solid rgba(255, 255, 255, 0.22);
+  border-top: 1px solid rgba(255, 255, 255, 0.35);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55), 0 2px 10px rgba(0, 0, 0, 0.35);
 }
 .hero-tag sup { color: var(--ilikia-teal-soft); }
 
@@ -520,7 +513,8 @@ h2.h-section.center {
 /* =====================================================
    SEÇÃO 2 — NATURALIDADE + SEGURANÇA (duas colunas)
    ===================================================== */
-.section-2 { background: var(--bg); }
+.section-2 { background: var(--bg); position: relative; overflow: hidden; }
+.section-2 > .wrap { position: relative; z-index: 1; }
 
 .s2-grid {
   display: grid;
@@ -586,13 +580,74 @@ h2.h-section.center {
 .s2-visual {
   position: relative;
 }
-.s2-visual img {
+.s2-visual-tilt {
+  width: 100%;
+}
+.s2-products {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2%;
+  padding: 6% 2% 12% 2%;
+}
+.s2-product-wrap {
+  position: relative;
+  z-index: 1;
+  width: 30%;
+  flex-shrink: 0;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+.s2-product-wrap--deep { z-index: 2; }
+
+.s2-product {
   width: 100%;
   height: auto;
   display: block;
-  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, filter;
 }
-.s2-visual:hover img { transform: scale(1.03); }
+.s2-product--fine    { animation: s2-float-fine    6.8s ease-in-out infinite; }
+.s2-product--deep    { animation: s2-float-deep    7.6s ease-in-out -1.2s infinite; }
+.s2-product--contour { animation: s2-float-contour 7.2s ease-in-out -2.5s infinite; }
+
+/* Float + drop-shadow em camadas: a sombra acompanha a silhueta inclinada
+   e fica mais difusa quando o produto sobe (afasta da "superfície") */
+@keyframes s2-float-fine {
+  0%, 100% {
+    transform: translateY(6%) rotate(8deg);
+    filter: drop-shadow(0 8px 10px rgba(0,0,0,0.22)) drop-shadow(0 18px 28px rgba(0,0,0,0.10));
+  }
+  50% {
+    transform: translateY(-2%) rotate(9.5deg);
+    filter: drop-shadow(0 16px 18px rgba(0,0,0,0.16)) drop-shadow(0 30px 44px rgba(0,0,0,0.08));
+  }
+}
+@keyframes s2-float-deep {
+  0%, 100% {
+    transform: translateY(-6%) rotate(-3deg);
+    filter: drop-shadow(0 14px 16px rgba(0,0,0,0.18)) drop-shadow(0 28px 42px rgba(0,0,0,0.09));
+  }
+  50% {
+    transform: translateY(-14%) rotate(-2deg);
+    filter: drop-shadow(0 22px 24px rgba(0,0,0,0.14)) drop-shadow(0 40px 58px rgba(0,0,0,0.07));
+  }
+}
+@keyframes s2-float-contour {
+  0%, 100% {
+    transform: translateY(4%) rotate(-10deg);
+    filter: drop-shadow(0 10px 12px rgba(0,0,0,0.22)) drop-shadow(0 20px 32px rgba(0,0,0,0.10));
+  }
+  50% {
+    transform: translateY(-4%) rotate(-11.5deg);
+    filter: drop-shadow(0 18px 20px rgba(0,0,0,0.16)) drop-shadow(0 32px 48px rgba(0,0,0,0.08));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .s2-product { animation: none; }
+}
 
 /* =====================================================
    SEÇÃO 3 — DESTAQUE DE LEITURA (vídeo de fundo)
@@ -1245,6 +1300,80 @@ h2.h-section.center {
 .bubble.b10 { left: 85%; width: 20px; height: 20px; animation-duration: 9s;    animation-delay:  2.25s; }
 .bubble.b11 { left: 93%; width: 42px; height: 42px; animation-duration: 14s;   animation-delay:  1.5s;  }
 .bubble.b12 { left: 38%; width: 12px; height: 12px; animation-duration: 7.5s;  animation-delay:  3.5s;  }
+.bubble.b13 { width: 16px; height: 16px; animation-duration: 8s;    animation-delay: 0.4s; }
+.bubble.b14 { width: 32px; height: 32px; animation-duration: 11.5s; animation-delay: 2.6s; }
+.bubble.b15 { width: 22px; height: 22px; animation-duration: 9.5s;  animation-delay: 1.4s; }
+.bubble.b16 { width: 14px; height: 14px; animation-duration: 7s;    animation-delay: 3.1s; }
+.bubble.b17 { width: 28px; height: 28px; animation-duration: 12s;   animation-delay: 1.1s; }
+.bubble.b18 { width: 18px; height: 18px; animation-duration: 10s;   animation-delay: 2.1s; }
+.bubble.b19 { width: 24px; height: 24px; animation-duration: 13s;   animation-delay: 0.8s; }
+.bubble.b20 { width: 12px; height: 12px; animation-duration: 8.5s;  animation-delay: 3.4s; }
+.bubble.b21 { width: 36px; height: 36px; animation-duration: 14s;   animation-delay: 1.3s; }
+.bubble.b22 { width: 20px; height: 20px; animation-duration: 11s;   animation-delay: 0.2s; }
+.bubble.b23 { width: 26px; height: 26px; animation-duration: 10.5s; animation-delay: 2.7s; }
+.bubble.b24 { width: 14px; height: 14px; animation-duration: 9s;    animation-delay: 1.9s; }
+
+/* Variante para fundo claro (seção 2): neutro/cinza, sem tom verde */
+.gel-bubbles--light .bubble {
+  background:
+    radial-gradient(circle at 32% 28%,
+      rgba(255, 255, 255, 0.92) 0%,
+      rgba(245, 245, 245, 0.55) 18%,
+      rgba(200, 200, 200, 0.35) 45%,
+      rgba(110, 110, 110, 0.22) 80%,
+      transparent 100%);
+  box-shadow:
+    inset 0 -6px 14px rgba(60, 60, 60, 0.32),
+    inset 0 4px 8px rgba(255, 255, 255, 0.55),
+    0 4px 14px rgba(0, 0, 0, 0.10);
+}
+
+/* Variante "boiando próximo aos produtos" — espalha e troca subida por drift orgânico */
+.gel-bubbles--float { overflow: visible; }
+.gel-bubbles--float .bubble {
+  bottom: auto;
+  opacity: 0.88;
+  animation-name: bubble-drift;
+  animation-timing-function: ease-in-out;
+}
+@keyframes bubble-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  33%      { transform: translate3d(var(--dx, 20px), calc(var(--dy, -20px) * 0.4), 0) scale(1.06); }
+  66%      { transform: translate3d(calc(var(--dx, 20px) * -0.3), var(--dy, -20px), 0) scale(0.94); }
+}
+.gel-bubbles--float .b1  { left:  4%; top: 18%; --dx:  28px; --dy: -32px; }
+.gel-bubbles--float .b2  { left: 18%; top:  6%; --dx: -26px; --dy:  22px; }
+.gel-bubbles--float .b3  { left: 32%; top: 38%; --dx:  22px; --dy:  30px; }
+.gel-bubbles--float .b4  { left: 48%; top:  4%; --dx: -24px; --dy:  26px; }
+.gel-bubbles--float .b5  { left: 64%; top: 28%; --dx:  30px; --dy: -24px; }
+.gel-bubbles--float .b6  { left: 84%; top: 12%; --dx: -32px; --dy:  28px; }
+.gel-bubbles--float .b7  { left:  8%; top: 65%; --dx:  26px; --dy: -22px; }
+.gel-bubbles--float .b8  { left: 34%; top: 78%; --dx: -24px; --dy: -20px; }
+.gel-bubbles--float .b9  { left: 55%; top: 88%; --dx:  22px; --dy: -28px; }
+.gel-bubbles--float .b10 { left: 78%; top: 70%; --dx: -30px; --dy: -22px; }
+.gel-bubbles--float .b11 { left: 90%; top: 48%; --dx: -24px; --dy:  26px; }
+.gel-bubbles--float .b12 { left:  2%; top: 42%; --dx:  28px; --dy:  24px; }
+.gel-bubbles--float .b13 { left: 12%; top: 30%; --dx: -26px; --dy:  20px; }
+.gel-bubbles--float .b14 { left: 26%; top: 52%; --dx:  22px; --dy: -26px; }
+.gel-bubbles--float .b15 { left: 42%; top: 22%; --dx: -28px; --dy:  22px; }
+.gel-bubbles--float .b16 { left: 58%; top: 58%; --dx:  26px; --dy: -20px; }
+.gel-bubbles--float .b17 { left: 72%; top: 42%; --dx: -22px; --dy:  28px; }
+.gel-bubbles--float .b18 { left: 88%; top: 32%; --dx:  24px; --dy: -22px; }
+.gel-bubbles--float .b19 { left: 16%; top: 82%; --dx: -28px; --dy: -24px; }
+.gel-bubbles--float .b20 { left: 42%; top: 94%; --dx:  20px; --dy: -30px; }
+.gel-bubbles--float .b21 { left: 68%; top: 84%; --dx: -30px; --dy: -22px; }
+.gel-bubbles--float .b22 { left:  6%; top:  4%; --dx:  26px; --dy:  26px; }
+.gel-bubbles--float .b23 { left: 96%; top:  4%; --dx: -28px; --dy:  22px; }
+.gel-bubbles--float .b24 { left: 50%; top: 50%; --dx:  20px; --dy: -24px; }
+
+/* Garante que os produtos fiquem acima das bolinhas dentro de .s2-visual */
+.s2-visual-tilt { position: relative; z-index: 1; }
+
+/* Camada ambiente — espalha algumas bolinhas pela seção inteira, desfocadas (sensação de fundo) */
+.gel-bubbles--ambient .bubble {
+  opacity: 0.55;
+  filter: blur(4px);
+}
 
 @media (prefers-reduced-motion: reduce) {
   .bubble { animation: none; opacity: 0; }
