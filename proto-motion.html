@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UP Facial — Proto Motion (Tecnologia R²)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --ilikia-deep: #0F4F4D;
+  --ilikia-teal: #08B2AC;
+  --up-deep:     #8C2E4F;
+  --up-contour:  #E26C3F;
+  --up-fine:     #08B2AC;
+  --bg:          #e8e8e8;
+  --text:        #1A1A1A;
+  --text-soft:   #555555;
+  --font-display:'Fraunces', Georgia, serif;
+  --font:        'Hanken Grotesk', system-ui, -apple-system, sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}*{margin:0;padding:0}
+html,body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+
+/* Page chrome só pra contexto */
+.page-pad{padding:60px 0}
+.wrap{max-width:1280px;margin:0 auto;padding:0 32px}
+
+/* ============== SEÇÃO R² ============== */
+.section-r2{position:relative;overflow:hidden}
+.s2-grid{
+  display:grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap:64px;
+  align-items:center;
+  min-height:640px;
+}
+.s2-text{position:relative;z-index:3}
+.kicker{
+  font-family:var(--font);
+  font-size:13px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--ilikia-teal);
+  display:inline-block;padding-bottom:10px;
+  border-bottom:1px solid var(--ilikia-teal);
+  margin-bottom:32px;
+}
+.h-section{
+  font-family:var(--font-display);
+  font-weight:400;
+  font-size:clamp(36px, 4.2vw, 56px);
+  line-height:1.08;
+  letter-spacing:-.01em;
+  color:#0d2c2b;
+  margin-bottom:24px;
+}
+.h-section em{color:var(--ilikia-teal);font-style:italic}
+.h-section sup{font-size:.45em;vertical-align:super;color:var(--text-soft);font-style:normal}
+.p-body{font-size:17px;color:#3a3a3a;max-width:520px;margin-bottom:28px}
+.p-body strong{color:#0d2c2b}
+.p-body sup{font-size:.7em}
+.s2-bullets{list-style:none;padding:0;color:#2c2c2c;font-size:15px}
+.s2-bullets li{padding-left:24px;position:relative;margin:8px 0}
+.s2-bullets li::before{
+  content:"";position:absolute;left:0;top:.7em;width:14px;height:1px;background:var(--ilikia-teal);
+}
+
+/* ============== STAGE (visual à direita) ============== */
+.stage{
+  position:relative;
+  height:680px;
+  /* deixa "vazar" pra direita: estoura a coluna do grid */
+  margin-right:-120px;
+  margin-left:-40px;
+}
+.gel-canvas{
+  position:absolute;inset:0;width:100%;height:100%;
+  display:block;
+  /* sem moldura — bordas suaves só nas pontas pra integrar com o off-white */
+  -webkit-mask-image: radial-gradient(120% 100% at 50% 50%, #000 60%, transparent 100%);
+          mask-image: radial-gradient(120% 100% at 50% 50%, #000 60%, transparent 100%);
+}
+
+/* ============== PRODUTOS FLUTUANDO ============== */
+.boxes{position:absolute;inset:0;pointer-events:none;perspective:1400px;perspective-origin:50% 60%}
+.box{
+  position:absolute;
+  /* PNGs originais são 675x375 landscape; rotacionamos pra ficar "em pé" */
+  width:170px;height:300px;
+  transform-style:preserve-3d;
+  will-change: transform;
+  filter: drop-shadow(0 30px 35px rgba(15,79,77,.35)) drop-shadow(0 8px 12px rgba(0,0,0,.18));
+}
+.box img{
+  width:300px;height:170px;
+  display:block;
+  /* Rotaciona o PNG horizontal pra ficar vertical, mantendo o "UP" pra cima */
+  transform: rotate(-90deg) translate(-65px, 65px);
+  transform-origin: top left;
+}
+
+/* Posições iniciais (3 caixas escalonadas) */
+.box--contour { top:30%;  left:8%;  width:155px;height:275px; z-index:1; animation: floatA 7s ease-in-out infinite, rotA 11s ease-in-out infinite; }
+.box--deep    { top:18%;  left:34%; width:180px;height:320px; z-index:3; animation: floatB 8.5s ease-in-out infinite, rotB 13s ease-in-out infinite; animation-delay:-2s, -3s }
+.box--fine    { top:24%;  left:60%; width:170px;height:300px; z-index:2; animation: floatC 9s ease-in-out infinite, rotC 12s ease-in-out infinite; animation-delay:-4s, -1s }
+
+@keyframes floatA{
+  0%,100%{ transform: translateY(0) translateX(0)}
+  50%    { transform: translateY(-22px) translateX(4px)}
+}
+@keyframes floatB{
+  0%,100%{ transform: translateY(0) translateX(0)}
+  50%    { transform: translateY(-28px) translateX(-6px)}
+}
+@keyframes floatC{
+  0%,100%{ transform: translateY(0) translateX(0)}
+  50%    { transform: translateY(-18px) translateX(8px)}
+}
+@keyframes rotA{
+  0%,100%{ transform: rotateY(-14deg) rotateX(6deg) rotateZ(-3deg)}
+  50%    { transform: rotateY(-8deg)  rotateX(8deg) rotateZ(-1deg)}
+}
+@keyframes rotB{
+  0%,100%{ transform: rotateY(-4deg) rotateX(4deg) rotateZ(2deg)}
+  50%    { transform: rotateY(2deg)  rotateX(7deg) rotateZ(0deg)}
+}
+@keyframes rotC{
+  0%,100%{ transform: rotateY(10deg) rotateX(6deg) rotateZ(4deg)}
+  50%    { transform: rotateY(15deg) rotateX(8deg) rotateZ(2deg)}
+}
+
+/* O .box wrapper recebe rot; o .box-inner recebe float — pra combinar */
+.box-inner{
+  width:100%;height:100%;
+  display:flex;align-items:center;justify-content:center;
+  transform-style:preserve-3d;
+}
+
+/* ============== Painel de controle (proto) ============== */
+.proto-bar{
+  position:fixed;left:16px;bottom:16px;z-index:50;
+  background:rgba(15,44,43,.92);color:#fff;border-radius:12px;
+  font-size:12px;padding:10px 14px;display:flex;gap:14px;align-items:center;
+  backdrop-filter:blur(6px);
+}
+.proto-bar b{font-weight:600}
+.proto-bar button{
+  background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.18);
+  border-radius:8px;padding:5px 10px;font:inherit;cursor:pointer;
+}
+.proto-bar button:hover{background:rgba(255,255,255,.22)}
+.proto-bar label{display:flex;gap:6px;align-items:center;cursor:pointer}
+
+@media (max-width: 900px){
+  .s2-grid{grid-template-columns:1fr;gap:32px}
+  .stage{margin:0;height:520px}
+}
+</style>
+</head>
+<body>
+
+<main class="page-pad">
+  <section class="section-r2">
+    <div class="wrap">
+      <div class="s2-grid">
+        <div class="s2-text">
+          <span class="kicker">Tecnologia R²</span>
+          <h2 class="h-section">
+            Naturalidade que você <em>vê.</em><br>
+            Segurança que você e o seu paciente <em>sentem.</em><sup>2</sup>
+          </h2>
+          <p class="p-body">
+            Toda a Linha UP foi desenvolvida com a
+            <strong>Tecnologia R²</strong>, que possui um processo de
+            reticulação inteligente<sup>1</sup>, permitindo entregar resultados
+            mais naturais e ao mesmo tempo duradouros.<sup>3</sup>
+          </p>
+          <ul class="s2-bullets">
+            <li>Reticulação inteligente</li>
+            <li>Integração tecidual superior</li>
+            <li>Resultados duradouros</li>
+          </ul>
+        </div>
+
+        <div class="stage" id="stage">
+          <canvas class="gel-canvas" id="gel"></canvas>
+          <div class="boxes">
+            <div class="box box--contour"><div class="box-inner"><img src="assets/images/up-contour-box.png" alt="UP Contour"></div></div>
+            <div class="box box--deep"><div class="box-inner"><img src="assets/images/up-deep-box.png" alt="UP Deep"></div></div>
+            <div class="box box--fine"><div class="box-inner"><img src="assets/images/up-fine-box.png" alt="UP Fine"></div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="proto-bar">
+  <b>Proto motion</b>
+  <span>·</span>
+  <label><input type="checkbox" id="tgl-color" checked> cores dos produtos</label>
+  <label><input type="checkbox" id="tgl-mouse" checked> reagir ao mouse</label>
+  <button id="btn-still">pausar</button>
+</div>
+
+<script>
+/* ============================================================
+   GEL SHADER — WebGL puro, sem dependências.
+   Técnica: domain-warped FBM noise + mistura de 3 cores (laranja,
+   magenta, teal) com highlight branco pra simular reflexo do gel.
+   ============================================================ */
+const canvas = document.getElementById('gel');
+const gl = canvas.getContext('webgl', { premultipliedAlpha:true, antialias:true });
+
+if(!gl){
+  document.body.insertAdjacentHTML('beforeend',
+    '<div style="position:fixed;top:20px;right:20px;background:#a00;color:#fff;padding:10px;border-radius:6px">WebGL indisponível neste navegador.</div>');
+}
+
+const VS = `
+attribute vec2 a_pos;
+varying vec2 v_uv;
+void main(){
+  v_uv = (a_pos + 1.0) * 0.5;
+  gl_Position = vec4(a_pos, 0.0, 1.0);
+}`;
+
+const FS = `
+precision highp float;
+varying vec2 v_uv;
+uniform float u_time;
+uniform vec2  u_res;
+uniform vec2  u_mouse;     // 0..1
+uniform float u_useColor;  // 1 = cores produto, 0 = mono cinza
+
+// hash + noise + fbm (clássico)
+float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1,311.7))) * 43758.5453); }
+float noise(vec2 p){
+  vec2 i = floor(p);
+  vec2 f = fract(p);
+  vec2 u = f*f*(3.0-2.0*f);
+  return mix(
+    mix(hash(i+vec2(0.0,0.0)), hash(i+vec2(1.0,0.0)), u.x),
+    mix(hash(i+vec2(0.0,1.0)), hash(i+vec2(1.0,1.0)), u.x),
+  u.y);
+}
+float fbm(vec2 p){
+  float s = 0.0; float a = 0.5;
+  for(int i=0;i<5;i++){
+    s += a * noise(p);
+    p = p*2.02 + vec2(13.3, 7.7);
+    a *= 0.5;
+  }
+  return s;
+}
+
+void main(){
+  vec2 uv = v_uv;
+  float ar = u_res.x / u_res.y;
+  vec2 p = vec2(uv.x * ar, uv.y);
+
+  // Domain warp — duas iterações pra dar viscosidade
+  float t = u_time * 0.07;
+  vec2 mouse = (u_mouse - 0.5) * 0.6;
+
+  vec2 q = vec2(
+    fbm(p * 1.8 + vec2(0.0, t) + mouse),
+    fbm(p * 1.8 + vec2(5.2, t*0.9) - mouse*0.7)
+  );
+  vec2 r = vec2(
+    fbm(p * 2.0 + 1.7*q + vec2(1.7, 9.2) + 0.15*t),
+    fbm(p * 2.0 + 1.7*q + vec2(8.3, 2.8) + 0.13*t)
+  );
+  float f = fbm(p * 2.4 + 2.4*r);
+
+  // Cores produto
+  vec3 cTeal    = vec3(0.031, 0.698, 0.674);   // #08B2AC UP Fine
+  vec3 cMagenta = vec3(0.549, 0.180, 0.310);   // #8C2E4F UP Deep
+  vec3 cOrange  = vec3(0.886, 0.424, 0.247);   // #E26C3F UP Contour
+  vec3 cLight   = vec3(0.96, 0.97, 0.96);
+  vec3 cDark    = vec3(0.06, 0.18, 0.18);
+
+  // 4 zonas baseadas em f, q, r
+  vec3 colA = mix(cDark, cTeal, smoothstep(0.0, 0.7, r.y + 0.3));
+  vec3 colB = mix(colA, cMagenta, smoothstep(0.35, 0.85, q.x + r.x*0.5));
+  vec3 colC = mix(colB, cOrange, smoothstep(0.55, 0.95, f + q.y*0.3));
+  vec3 colMono = mix(cDark*1.4, cLight, smoothstep(0.1, 0.95, f*1.1 + r.y*0.3));
+
+  vec3 col = mix(colMono, colC, u_useColor);
+
+  // Highlight especular (reflexo do gel)
+  float hi = pow(smoothstep(0.55, 0.95, f + r.x*0.4), 4.0);
+  col += vec3(hi) * 0.35;
+
+  // Bubbles esparsas
+  float b = smoothstep(0.92, 1.0, noise(p*8.0 + t*2.0));
+  col += vec3(b) * 0.25;
+
+  // Vignette suave pras bordas
+  float vig = smoothstep(1.2, 0.4, length((uv-0.5)*vec2(ar,1.0)));
+  col *= mix(0.85, 1.05, vig);
+
+  gl_FragColor = vec4(col, 1.0);
+}`;
+
+function compile(type, src){
+  const s = gl.createShader(type);
+  gl.shaderSource(s, src); gl.compileShader(s);
+  if(!gl.getShaderParameter(s, gl.COMPILE_STATUS)){
+    console.error(gl.getShaderInfoLog(s));
+  }
+  return s;
+}
+const prog = gl.createProgram();
+gl.attachShader(prog, compile(gl.VERTEX_SHADER, VS));
+gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, FS));
+gl.linkProgram(prog);
+gl.useProgram(prog);
+
+const buf = gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+const aPos = gl.getAttribLocation(prog,'a_pos');
+gl.enableVertexAttribArray(aPos);
+gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+
+const uTime  = gl.getUniformLocation(prog,'u_time');
+const uRes   = gl.getUniformLocation(prog,'u_res');
+const uMouse = gl.getUniformLocation(prog,'u_mouse');
+const uColor = gl.getUniformLocation(prog,'u_useColor');
+
+let mouse = {x:.5, y:.5}, mouseTarget = {x:.5, y:.5};
+let useColor = 1.0;
+let useMouse = true;
+let paused = false;
+
+function resize(){
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const w = canvas.clientWidth, h = canvas.clientHeight;
+  canvas.width  = w * dpr;
+  canvas.height = h * dpr;
+  gl.viewport(0,0,canvas.width,canvas.height);
+}
+window.addEventListener('resize', resize); resize();
+
+const stage = document.getElementById('stage');
+stage.addEventListener('pointermove', (e)=>{
+  const r = stage.getBoundingClientRect();
+  mouseTarget.x = (e.clientX - r.left) / r.width;
+  mouseTarget.y = 1.0 - (e.clientY - r.top) / r.height;
+});
+stage.addEventListener('pointerleave', ()=>{ mouseTarget.x = .5; mouseTarget.y = .5; });
+
+document.getElementById('tgl-color').addEventListener('change', (e)=>{ useColor = e.target.checked ? 1.0 : 0.0; });
+document.getElementById('tgl-mouse').addEventListener('change', (e)=>{ useMouse = e.target.checked; if(!useMouse){ mouseTarget.x=.5; mouseTarget.y=.5;} });
+const btnStill = document.getElementById('btn-still');
+btnStill.addEventListener('click', ()=>{ paused = !paused; btnStill.textContent = paused ? 'retomar' : 'pausar'; });
+
+let t0 = performance.now();
+let tAccum = 0, tPrev = t0;
+function frame(now){
+  const dt = (now - tPrev) / 1000; tPrev = now;
+  if(!paused) tAccum += dt;
+  mouse.x += (mouseTarget.x - mouse.x) * 0.06;
+  mouse.y += (mouseTarget.y - mouse.y) * 0.06;
+
+  gl.uniform1f(uTime,  tAccum);
+  gl.uniform2f(uRes,   canvas.width, canvas.height);
+  gl.uniform2f(uMouse, useMouse ? mouse.x : .5, useMouse ? mouse.y : .5);
+  gl.uniform1f(uColor, useColor);
+  gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>

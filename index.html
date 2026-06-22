@@ -32,17 +32,11 @@
 
 <link rel="stylesheet" href="style.css">
 
-<!-- Meta Pixel (conta Ilikia, compartilhado com nanogen + upfull) -->
-<script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '666277432116339');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=666277432116339&ev=PageView&noscript=1"/></noscript>
+  <!-- Tracking global ILIKIA/AICONIQ - Pixel + GA4 + CAPI (server-side) via gateway -->
+  <script>window.__TRK__={brand:'ilikia',pixelId:'666277432116339',ga4Id:'',collect:'https://track-ilikia.koko.ag/collect'};</script>
+  <script async src="https://track-ilikia.koko.ag/t.js"></script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=666277432116339&ev=PageView&noscript=1" alt=""/></noscript>
 </head>
 <body>
 
@@ -79,7 +73,7 @@ fbq('track', 'PageView');
      =========================================== -->
 <section class="hero">
   <video class="hero-bg-video" autoplay muted loop playsinline preload="auto" poster="assets/images/hero.png">
-    <source src="assets/videos/hero.mp4?v=4" type="video/mp4">
+    <source src="assets/videos/hero.mp4?v=5" type="video/mp4">
   </video>
 
   <div class="wrap hero-content">

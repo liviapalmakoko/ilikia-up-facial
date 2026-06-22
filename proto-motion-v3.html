@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UP Facial — Proto Motion v3 (Edge spotlight, fundo branco)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ilikia-deep:#0F4F4D;
+  --ilikia-teal:#08B2AC;
+  --ilikia-teal-glow:#3FE0D7;
+  --bg:#e8e8e8;
+  --text:#1A1A1A;
+  --text-soft:#555555;
+  --font-display:'Fraunces',Georgia,serif;
+  --font:'Hanken Grotesk',system-ui,-apple-system,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}*{margin:0;padding:0}
+html,body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.page-pad{padding:80px 0}
+.wrap{max-width:1280px;margin:0 auto;padding:0 32px}
+
+.section-r2{position:relative;overflow:hidden}
+.s2-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:64px;align-items:center;min-height:640px}
+
+/* ---------- TEXTO ESQUERDA ---------- */
+.s2-text{position:relative;z-index:3}
+.kicker{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--ilikia-teal);display:inline-block;padding-bottom:10px;border-bottom:1px solid var(--ilikia-teal);margin-bottom:32px}
+.h-section{font-family:var(--font-display);font-weight:400;font-size:clamp(36px,4.2vw,56px);line-height:1.08;letter-spacing:-.01em;color:#0d2c2b;margin-bottom:24px}
+.h-section em{color:var(--ilikia-teal);font-style:italic}
+.h-section sup{font-size:.45em;vertical-align:super;color:var(--text-soft);font-style:normal}
+.p-body{font-size:17px;color:#3a3a3a;max-width:520px;margin-bottom:28px}
+.p-body strong{color:#0d2c2b}
+.p-body sup{font-size:.7em}
+.s2-bullets{list-style:none;color:#2c2c2c;font-size:15px}
+.s2-bullets li{padding-left:24px;position:relative;margin:8px 0}
+.s2-bullets li::before{content:"";position:absolute;left:0;top:.7em;width:14px;height:1px;background:var(--ilikia-teal)}
+
+/* =================================================
+   SPOTLIGHT CARD v3
+   - Fundo branco off-white
+   - Edge glow vem de drop-shadow no PNG transparente
+     → o brilho segue *naturalmente* a silhueta da caixa
+   - 2 camadas:
+       hero-img    = glow base sempre presente (sutil, respira)
+       hero-spot   = glow mais intenso, mascarado por radial
+                     gradient seguindo o cursor → só "acende" do
+                     lado da caixa onde o mouse está
+   ================================================= */
+/* sem fundo, sem borda, sem clip — produto flutua sobre o off-white da página */
+.spotlight-card{
+  position:relative;
+  height:640px;
+  margin-right:-60px;
+  isolation:isolate;          /* contém blend modes do glow */
+}
+
+/* O halo vem de um PNG raster bakeado (up-hero-glow.png) — não tem
+   bbox de filtro, não tem como cortar. É só uma imagem maior atrás. */
+
+.hero-stack{
+  position:absolute;inset:0;z-index:3;
+  display:flex;align-items:center;justify-content:center;
+}
+.hero-stack img{
+  position:absolute;
+  height:auto;
+  user-select:none;
+  -webkit-user-drag:none;
+}
+
+/* HALO PNG bakeado — proporção 1642/1122 ≈ 1.464× a imagem das caixas */
+.hero-glow{
+  width: 114%;
+  max-width: 937px;
+  z-index: 1;
+  animation: heroFloat 8s ease-in-out infinite, glowBreathe 6s ease-in-out infinite;
+  will-change: opacity, transform;
+}
+@keyframes glowBreathe{
+  0%,100% { opacity: .70 }
+  50%     { opacity: 1   }
+}
+
+/* IMG BASE — caixas reais. Filter agora só pra sombra de chão sutil. */
+.hero-img{
+  width: 78%;
+  max-width: 640px;
+  filter: drop-shadow(0 3px 10px rgba(15,79,77, .18));
+  z-index: 2;
+  animation: heroFloat 8s ease-in-out infinite;
+  will-change: transform;
+}
+@keyframes heroFloat{
+  0%,100%{ transform: translateY(0) }
+  50%    { transform: translateY(-10px) }
+}
+
+/* IMG SPOT — glow forte, MASCARADO pelo cursor.
+   PNG é a mesma das caixas; o que aparece é só a silhueta brilhando
+   onde o radial-gradient mask passa. */
+.hero-spot{
+  width: 78%;
+  max-width: 640px;
+  z-index: 3;
+  filter:
+    drop-shadow(0 0 24px rgba(63,224,215,.85))
+    drop-shadow(0 0 60px rgba(8,178,172,.55))
+    drop-shadow(0 0 120px rgba(8,178,172,.35));
+  opacity: var(--spot, 0);      /* invisível sem hover — sem círculo "fantasma" */
+  -webkit-mask-image: radial-gradient(
+    340px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(0,0,0,1) 0%,
+    rgba(0,0,0,.55) 25%,
+    rgba(0,0,0,0) 55%
+  );
+          mask-image: radial-gradient(
+    340px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(0,0,0,1) 0%,
+    rgba(0,0,0,.55) 25%,
+    rgba(0,0,0,0) 55%
+  );
+  transition: opacity .35s ease;
+  animation: heroFloat 8s ease-in-out infinite;  /* acompanha o float do base */
+}
+.spotlight-card:hover .hero-spot{ --spot: 1 }
+
+/* Tag canto — sem borda agora, deixa mais sutil */
+.spotlight-card .tag{
+  position:absolute;left:0;bottom:8px;z-index:7;
+  color:rgba(15,79,77,.42);
+  font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+}
+
+/* ---------- proto bar ---------- */
+.proto-bar{position:fixed;left:16px;bottom:16px;z-index:50;background:rgba(15,44,43,.92);color:#fff;border-radius:12px;font-size:12px;padding:10px 14px;display:flex;gap:14px;align-items:center;backdrop-filter:blur(6px)}
+.proto-bar b{font-weight:600}
+.proto-bar a{color:#7FC4BE;text-decoration:none;border-bottom:1px dotted #7FC4BE;margin-left:4px}
+
+@media (max-width:900px){
+  .s2-grid{grid-template-columns:1fr;gap:32px}
+  .spotlight-card{height:480px;margin:0}
+}
+@media (prefers-reduced-motion: reduce){
+  .hero-img, .hero-spot, .hero-glow{ animation:none }
+}
+</style>
+</head>
+<body>
+
+<main class="page-pad">
+  <section class="section-r2">
+    <div class="wrap">
+      <div class="s2-grid">
+        <div class="s2-text">
+          <span class="kicker">Tecnologia R²</span>
+          <h2 class="h-section">
+            Naturalidade que você <em>vê.</em><br>
+            Segurança que você e o seu paciente <em>sentem.</em><sup>2</sup>
+          </h2>
+          <p class="p-body">
+            Toda a Linha UP foi desenvolvida com a
+            <strong>Tecnologia R²</strong>, que possui um processo de
+            reticulação inteligente<sup>1</sup>, permitindo entregar resultados
+            mais naturais e ao mesmo tempo duradouros.<sup>3</sup>
+          </p>
+          <ul class="s2-bullets">
+            <li>Reticulação inteligente</li>
+            <li>Integração tecidual superior</li>
+            <li>Resultados duradouros</li>
+          </ul>
+        </div>
+
+        <div class="spotlight-card" id="card">
+          <div class="hero-stack">
+            <img class="hero-glow" src="assets/images/up-hero-glow.png" alt="" aria-hidden="true">
+            <img class="hero-img"  src="assets/images/up-hero-real.png" alt="Linha UP — UP Contour, UP Deep, UP Fine">
+            <img class="hero-spot" src="assets/images/up-hero-real.png" alt="" aria-hidden="true">
+          </div>
+          <div class="tag">Linha UP · 03 produtos</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="proto-bar">
+  <b>Proto motion v3</b> · edge spotlight, sem card
+  <span>·</span><span>mova o mouse sobre o card</span>
+  <span>·</span>
+  <a href="proto-motion-v2.html">v2 (dark + spotlight)</a>
+  <a href="proto-motion.html">v1 (shader gel)</a>
+</div>
+
+<script>
+const card = document.getElementById('card');
+let raf, target = { mx: 50, my: 50 }, cur = { mx: 50, my: 50 };
+
+card.addEventListener('pointermove', (e)=>{
+  const r = card.getBoundingClientRect();
+  target.mx = ((e.clientX - r.left) / r.width)  * 100;
+  target.my = ((e.clientY - r.top)  / r.height) * 100;
+  if(!raf) loop();
+});
+card.addEventListener('pointerleave', ()=>{
+  target.mx = 50; target.my = 50;
+  if(!raf) loop();
+});
+
+function loop(){
+  raf = requestAnimationFrame(loop);
+  const k = 0.12;
+  cur.mx += (target.mx - cur.mx) * k;
+  cur.my += (target.my - cur.my) * k;
+  card.style.setProperty('--mx', cur.mx + '%');
+  card.style.setProperty('--my', cur.my + '%');
+  if (Math.abs(target.mx - cur.mx) < .05 && Math.abs(target.my - cur.my) < .05){
+    cancelAnimationFrame(raf); raf = null;
+  }
+}
+loop();
+</script>
+</body>
+</html>

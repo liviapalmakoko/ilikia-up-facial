@@ -410,6 +410,28 @@ h2.h-section.center {
   z-index: 0;
 }
 
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: transparent;
+}
+
+/* Snapshot: petróleo-da-marca left→right overlay (aprovado 2026-05-25). Para restaurar, descomentar.
+.hero-overlay {
+  background:
+    linear-gradient(90deg, rgba(15, 79, 77, 0.88) 0%, rgba(15, 79, 77, 0.65) 30%, rgba(15, 79, 77, 0.25) 55%, rgba(15, 79, 77, 0.0) 75%),
+    linear-gradient(180deg, rgba(15, 79, 77, 0.25) 0%, rgba(15, 79, 77, 0.0) 25%, rgba(15, 79, 77, 0.0) 75%, rgba(15, 79, 77, 0.35) 100%);
+}
+@media (max-width: 880px) {
+  .hero-overlay {
+    background:
+      linear-gradient(180deg, rgba(15, 79, 77, 0.60) 0%, rgba(15, 79, 77, 0.35) 35%, rgba(15, 79, 77, 0.50) 75%, rgba(15, 79, 77, 0.75) 100%);
+  }
+}
+*/
+
 .hero-content {
   position: relative;
   z-index: 2;
