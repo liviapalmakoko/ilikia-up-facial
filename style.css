@@ -1,3 +1,13 @@
+/* === Gotham (fonte do KV da Linha UP) — self-hosted ===
+   ATENCAO/RISCO DE LICENCA: arquivos fornecidos pelo cliente, de origem nao-oficial
+   (freefontsfamily.com), SEM licenca comercial confirmada. Uso sinalizado ao cliente
+   na tarefa do ClickUp. Substituir pelos arquivos da licenca oficial (Hoefler&Co)
+   antes do uso comercial definitivo. */
+@font-face{font-family:'Gotham';font-style:normal;font-weight:300;font-display:swap;src:url('assets/fonts/GothamLight.woff2') format('woff2')}
+@font-face{font-family:'Gotham';font-style:normal;font-weight:400;font-display:swap;src:url('assets/fonts/GothamBook.woff2') format('woff2')}
+@font-face{font-family:'Gotham';font-style:normal;font-weight:500;font-display:swap;src:url('assets/fonts/GothamMedium.woff2') format('woff2')}
+@font-face{font-family:'Gotham';font-style:normal;font-weight:700;font-display:swap;src:url('assets/fonts/GothamBold.woff2') format('woff2')}
+@font-face{font-family:'Gotham';font-style:normal;font-weight:900;font-display:swap;src:url('assets/fonts/Gotham-Black.woff2') format('woff2')}
 /* =====================================================
    UP FACIAL — Ilikia
    Estrutura: 7 seções do briefing
@@ -24,7 +34,7 @@
 
   /* Tipografia (inspirada nas LPs irmãs) */
   --font-display: 'Fraunces', Georgia, serif;
-  --font:         'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  --font:         'Gotham', 'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
 
   /* Espaçamento / radius */
   --radius-sm: 6px;
