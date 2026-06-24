@@ -35,7 +35,6 @@
 
   <!-- Tracking global ILIKIA/AICONIQ - Pixel + GA4 + CAPI (server-side) via gateway -->
   <script>window.__TRK__={brand:'ilikia',pixelId:'666277432116339',ga4Id:'',collect:'https://track-ilikia.koko.ag/collect'};</script>
-  <script async src="https://track-ilikia.koko.ag/t.js"></script>
   <noscript><img height="1" width="1" style="display:none"
   src="https://www.facebook.com/tr?id=666277432116339&ev=PageView&noscript=1" alt=""/></noscript>
 </head>
@@ -641,5 +640,46 @@
 </footer>
 
 <script src="script.js"></script>
+  <!-- ===== Aviso de cookies (modelo opt-out): tracking carrega por padrao; so para se "Recusar" ===== -->
+  <style>
+    #cookieBanner{position:fixed;left:0;right:0;bottom:0;z-index:99999;display:flex;gap:16px;align-items:center;justify-content:center;flex-wrap:wrap;padding:14px 20px;background:rgba(12,18,30,.95);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-top:1px solid rgba(255,255,255,.14);color:#EEF2F8;font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;box-shadow:0 -8px 30px rgba(0,0,0,.3);transform:translateY(110%);transition:transform .35s ease}
+    #cookieBanner.show{transform:translateY(0)}
+    #cookieBanner p{font-size:13px;line-height:1.5;max-width:680px;margin:0;color:rgba(238,242,248,.88)}
+    #cookieBanner .cookie-actions{display:flex;gap:10px;flex-wrap:wrap}
+    #cookieBanner button{font:inherit;font-size:13px;font-weight:600;border-radius:999px;padding:9px 20px;cursor:pointer;border:1px solid transparent;transition:background .2s,border-color .2s}
+    #cookieAccept{background:#2E6FE0;color:#fff}#cookieAccept:hover{background:#1E50C9}
+    #cookieReject{background:transparent;color:#EEF2F8;border-color:rgba(255,255,255,.34)}#cookieReject:hover{border-color:#fff}
+    @media(max-width:640px){#cookieBanner{padding:12px 14px;gap:10px}#cookieBanner .cookie-actions{width:100%}#cookieBanner button{flex:1}}
+  </style>
+  <div id="cookieBanner" role="dialog" aria-label="Aviso de cookies" aria-live="polite" hidden>
+    <p>Usamos cookies de medicao e marketing (Google Analytics, Meta e RD Station) para entender a audiencia e melhorar sua experiencia. Ao continuar navegando, voce concorda com o uso — mas pode recusar quando quiser.</p>
+    <div class="cookie-actions">
+      <button type="button" id="cookieReject">Recusar</button>
+      <button type="button" id="cookieAccept">Entendi</button>
+    </div>
+  </div>
+  <script>
+    // Gerenciador de cookies (modelo opt-out): o tracking carrega por padrao e SO e bloqueado se a pessoa clicar "Recusar".
+    (function(){
+      var KEY='ilikia_cookie_consent', loaded=false;
+      function loadTracking(){
+        if(loaded)return; loaded=true;
+        var g=document.createElement('script'); g.async=true;
+        g.src='https://track-ilikia.koko.ag/t.js';
+        document.head.appendChild(g);
+      }
+      function get(){ try{return localStorage.getItem(KEY);}catch(e){return null;} }
+      function set(v){ try{localStorage.setItem(KEY,v);}catch(e){} }
+      var banner=document.getElementById('cookieBanner');
+      function show(){ if(banner){ banner.hidden=false; requestAnimationFrame(function(){ banner.classList.add('show'); }); } }
+      function hide(){ if(banner){ banner.classList.remove('show'); setTimeout(function(){ banner.hidden=true; },350); } }
+      var c=get();
+      if(c!=='denied'){ loadTracking(); }   // opt-out: rastreia por padrao
+      if(!c){ show(); }                      // aviso so ate a 1a escolha
+      var a=document.getElementById('cookieAccept'); if(a) a.addEventListener('click',function(){ set('granted'); hide(); loadTracking(); });
+      var r=document.getElementById('cookieReject'); if(r) r.addEventListener('click',function(){ set('denied'); hide(); location.reload(); });
+      document.querySelectorAll('[data-cookie-prefs]').forEach(function(el){ el.addEventListener('click',function(e){ e.preventDefault(); show(); }); });
+    })();
+  </script>
 </body>
 </html>
