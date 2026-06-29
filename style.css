@@ -24,16 +24,16 @@
   --up-contour:      #E26C3F;   /* laranja (UP Contour) */
 
   /* Neutros claros */
-  --bg:              #e8e8e8;
-  --bg-soft:         #e8e8e8;
+  --bg:              #7FC4BE;
+  --bg-soft:         #7FC4BE;
   --bg-card:         #FFFFFF;
-  --text:            #1A1A1A;
+  --text:            #0F4F4D;
   --text-soft:       #555555;
   --text-mute:       #8A8A8A;
   --border:          #E4E2DC;
 
   /* Tipografia (inspirada nas LPs irmãs) */
-  --font-display: 'Fraunces', Georgia, serif;
+  --font-display: 'Gotham', 'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
   --font:         'Gotham', 'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
 
   /* Espaçamento / radius */
@@ -1025,7 +1025,7 @@ h2.h-section.center {
 /* ---------- Box da tabela com shine border ---------- */
 .spec-table-box {
   position: relative;
-  background: var(--bg-soft);
+  background: #FFFFFF;
   border-radius: var(--radius-lg);
   margin: 0 auto;
   max-width: 1280px;
@@ -1510,7 +1510,7 @@ h2.h-section.center {
    SEÇÃO 6 — FORMULÁRIO
    ===================================================== */
 .section-6 {
-  background: #e1e3e0;
+  background: #7FC4BE;
   color: var(--ilikia-deep);
   padding: 110px 0;
 }
@@ -1651,7 +1651,7 @@ h2.h-section.center {
 .form-card {
   position: relative;
   z-index: 1;
-  background: #e1e3e0;
+  background: #FFFFFF;
   border-radius: var(--radius-lg);
   padding: 56px 44px 44px;
   color: var(--text);
