@@ -2212,6 +2212,13 @@ input:focus, select:focus {
 .perf-card .perf-title{color:var(--ilikia-deep)}
 .perf-card .perf-desc{color:#39615f}
 .perf-card .perf-icon{background:rgba(8,178,172,.12);border-color:rgba(8,178,172,.25);color:var(--ilikia-teal)}
+/* CORREÇÕES pós-review visual 16/07:
+   - footer: o :first-child do pareamento tinha filter:none (o PNG antigo já era
+     branco); o logo-ilikia-std.svg é preto (currentColor) -> reativa o invert.
+   - .cta-row: os CTAs adicionados precisam de container centralizado próprio
+     (o .s4-cta original só centraliza dentro do grid .s4-end). */
+.footer-logo-pair .footer-product-logo:first-child{filter:brightness(0) invert(1)}
+.cta-row{display:flex;justify-content:center;width:100%;margin-top:44px}
 /* hero estático: caixas da arte aparecem à direita, texto continua sobre o overlay escuro */
 .hero-bg-video{object-position:center right}
 @media (max-width:880px){.hero-bg-video{object-position:center center}}
