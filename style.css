@@ -2222,3 +2222,25 @@ input:focus, select:focus {
 /* hero estático: caixas da arte aparecem à direita, texto continua sobre o overlay escuro */
 .hero-bg-video{object-position:center right}
 @media (max-width:880px){.hero-bg-video{object-position:center center}}
+
+/* ============================================================
+   AJUSTES 16/07/2026 (2ª leva) — review Gabs (task 86ah2xyqw)
+   ============================================================ */
+/* NAV sticky morta: html/body com overflow-x:hidden viram scroll container
+   e quebram position:sticky. Mesmo gotcha resolvido na UP Max — clip corta
+   o overflow horizontal SEM criar scroll container. (Fallback: navegadores
+   sem 'clip' ignoram esta regra e ficam como estavam.) */
+html, body { overflow-x: clip; }
+/* Seção do formulário: sai o verde chapado (item 9 da Mari — "muito verde
+   água, sem variação"). Bolhas do produto em soft-light + degradê leve pra
+   dar profundidade; card branco do form segue protagonista. */
+.section-6 {
+  background-image: url('assets/images/bg-bolhas.jpg'),
+    linear-gradient(165deg, #10bdb6 0%, #08b2ac 48%, #077f7b 100%);
+  background-size: cover, auto;
+  background-position: center, center;
+  background-repeat: no-repeat, no-repeat;
+  background-blend-mode: soft-light, normal;
+}
+/* respiro do título da seção do form */
+.s6-head h2 { margin-bottom: 14px; }
