@@ -2186,3 +2186,32 @@ input:focus, select:focus {
   color: var(--ilikia-teal-soft);
   opacity: 0.8;
 }
+
+/* ============================================================
+   AJUSTES 16/07/2026 — feedback do cliente 15/07 (task 86ah2xyqw)
+   CSS aditivo: fix "vê/sentem", florzinha no kicker e bullets,
+   bolhas de vidro da pasta no lugar das "balas", boxes de
+   performance mais brancos, imagem única das caixas novas.
+   ============================================================ */
+/* "vê."/"sentem." sumiam (teal sobre teal) — cliente pediu a fonte no verde escuro */
+.section-2 .h-section em{color:var(--ilikia-deep)}
+/* kicker: sai o traço/sublinhado, entra a florzinha Ilikia */
+.kicker{border-bottom:0;padding-bottom:0;position:relative;padding-left:22px}
+.kicker::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:14px;height:14px;background:currentColor;-webkit-mask:url('assets/images/flor-ilikia.svg') center/contain no-repeat;mask:url('assets/images/flor-ilikia.svg') center/contain no-repeat}
+/* tópicos: florzinha no lugar do travessão */
+.s2-bullets li::before{width:14px;height:14px;top:.28em;background:currentColor;-webkit-mask:url('assets/images/flor-ilikia.svg') center/contain no-repeat;mask:url('assets/images/flor-ilikia.svg') center/contain no-repeat}
+/* moléculas CSS pareciam balas -> textura real de bolhas de vidro (pasta do cliente) */
+.gel-bubbles{display:none}
+.section-2{background:url('assets/images/bg-bolhas.jpg') center/cover no-repeat var(--bg);background-blend-mode:soft-light}
+.section-5{background-image:url('assets/images/bg-bolhas.jpg');background-size:cover;background-position:center;background-blend-mode:soft-light}
+/* caixas novas: imagem única, estática */
+.s2-kv{width:100%;height:auto;filter:drop-shadow(0 30px 40px rgba(0,0,0,.28))}
+/* boxes de performance mais brancos (estavam apagados) */
+.perf-card{background:rgba(255,255,255,.95);border-color:rgba(255,255,255,.95)}
+.perf-card:hover{background:#fff}
+.perf-card .perf-title{color:var(--ilikia-deep)}
+.perf-card .perf-desc{color:#39615f}
+.perf-card .perf-icon{background:rgba(8,178,172,.12);border-color:rgba(8,178,172,.25);color:var(--ilikia-teal)}
+/* hero estático: caixas da arte aparecem à direita, texto continua sobre o overlay escuro */
+.hero-bg-video{object-position:center right}
+@media (max-width:880px){.hero-bg-video{object-position:center center}}

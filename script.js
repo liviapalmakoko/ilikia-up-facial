@@ -303,6 +303,8 @@
       nome: form.nome.value.trim(),
       email: form.email.value.trim(),
       telefone: form.telefone.value.trim(),
+      cpf_cnpj: form.cpf_cnpj.value.trim(),
+      cidade: form.cidade.value.trim(),
       crm: form.crm.value.trim(),
       estado: form.estado.value,
       especialidade: form.especialidade.value,
@@ -326,8 +328,12 @@
       email: data.email,
       nome: data.nome,
       telefone: data.telefone,
+      cidade: data.cidade,
       estado: data.estado,
       cf_crm: data.crm,
+      // 16/07/2026: CPF/CNPJ opcional do form padrão — separa por tamanho (11=CPF, 14=CNPJ), como no UP Full
+      cf_cpf: (data.cpf_cnpj.replace(/\D/g, '').length === 11 ? data.cpf_cnpj : ''),
+      cf_cnpj: (data.cpf_cnpj.replace(/\D/g, '').length === 14 ? data.cpf_cnpj : ''),
       cf_especialidade: data.especialidade,
       tags: [
         'upfacial-landing',
