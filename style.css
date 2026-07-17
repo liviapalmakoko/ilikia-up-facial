@@ -2353,7 +2353,7 @@ html, body { overflow-x: clip; }
 .hero--gel::after { content: none; }
 .hero--gel .hero-bg-layer {
   position: absolute; inset: 0; z-index: 0;
-  background: url('assets/images/hero-bg-gel.jpg?v=28') center/cover no-repeat;
+  background: url('assets/images/hero-bg-gel.jpg?v=29') center/cover no-repeat;
 }
 /* degradê só p/ legibilidade do texto à esquerda — suave, sem emenda */
 .hero--gel .hero-bg-layer::after {
