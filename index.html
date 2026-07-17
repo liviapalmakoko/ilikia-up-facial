@@ -31,7 +31,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet">
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/GothamBook.woff2" crossorigin>
 
-<link rel="stylesheet" href="style.css?v=24">
+<link rel="stylesheet" href="style.css?v=25">
 
   <!-- Tracking global ILIKIA/AICONIQ - Pixel + GA4 + CAPI (server-side) via gateway -->
   <script>window.__TRK__={brand:'ilikia',pixelId:'666277432116339',ga4Id:'',collect:'https://track-ilikia.koko.ag/collect'};</script>
@@ -73,10 +73,11 @@
 <!-- ===========================================
      SEÇÃO 1 — HERO
      =========================================== -->
-<section class="hero hero--split">
-  <!-- 17/07 (noturno): banner reconstruído — texto e produto lado a lado, sem texto
-       cobrindo o produto (feedback Mari 16/07, referência upmax.koko.ag).
-       Arte oficial da pasta do cliente exibida inteira como card, sem overlay. -->
+<section class="hero hero--split hero--gel">
+  <!-- 17/07 (v3 GEL — decisão Gabs): estilo UP Max. Fundo de gel tingido teal em
+       camada ÚNICA full-bleed (cover, sem container/card intermediário) + produtos
+       recortados LIMPOS (alpha matting) por cima com drop-shadow. Camadas = responsivo. -->
+  <div class="hero-bg-layer" aria-hidden="true"></div>
   <div class="wrap hero-content hero-split">
     <div class="hero-text">
       <h1 class="headline">
@@ -102,13 +103,8 @@
       <a href="#linha" class="btn-primary">Quero conhecer a linha completa</a>
     </div>
     <div class="hero-art" aria-hidden="true">
-      <!-- 17/07 (2ª passada): vídeo hero HD oficial da pasta (1080p, caixas em movimento
-           no splash). No card do split o texto não encosta no produto (feedback 16/07) e
-           volta o movimento que a cliente pediu (15/07). Poster p/ 1º paint. -->
-      <video class="hero-art-video" autoplay muted loop playsinline preload="metadata"
-             poster="assets/images/hero-video-poster.jpg?v=1">
-        <source src="assets/videos/hero.mp4" type="video/mp4">
-      </video>
+      <img class="hero-prod" src="assets/images/hero-produtos-cut.webp?v=25" alt=""
+           decoding="async" fetchpriority="high">
     </div>
   </div>
 </section>
@@ -179,8 +175,12 @@
           <span class="bubble b23"></span>
           <span class="bubble b24"></span>
         </div>
-        <!-- 16/07/2026: caixas novas da pasta do cliente (render oficial), sem animação — feedback 15/07 -->
-        <img class="s2-kv" src="assets/images/caixas-kv-3d.png" alt="Caixas UP Fine, UP Deep e UP Contour" loading="lazy" decoding="async">
+        <!-- 17/07 (v3): vídeo hero HD (re-encode CRF18) reaproveitado aqui — movimento na
+             Tecnologia R², onde agrega, no lugar da imagem estática. Muted/loop/inline + poster. -->
+        <video class="s2-kv s2-kv-video" autoplay muted loop playsinline preload="metadata"
+               poster="assets/images/hero-video-poster.jpg?v=25">
+          <source src="assets/videos/hero.mp4?v=25" type="video/mp4">
+        </video>
       </div>
     </div>
   </div>
@@ -678,7 +678,7 @@
   </div>
 </footer>
 
-<script src="script.js?v=24"></script>
+<script src="script.js?v=25"></script>
   <!-- ===== Aviso de cookies (modelo opt-out): tracking carrega por padrao; so para se "Recusar" ===== -->
   <style>
     #cookieBanner{position:fixed;left:0;right:0;bottom:0;z-index:99999;display:flex;gap:16px;align-items:center;justify-content:center;flex-wrap:wrap;padding:14px 20px;background:rgba(12,18,30,.95);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-top:1px solid rgba(255,255,255,.14);color:#EEF2F8;font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;box-shadow:0 -8px 30px rgba(0,0,0,.3);transform:translateY(110%);transition:transform .35s ease}

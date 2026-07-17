@@ -2341,3 +2341,53 @@ html, body { overflow-x: clip; }
   border-color: rgba(226, 108, 63, 0.30);
   color: var(--up-contour);
 }
+
+/* ============================================================
+   HERO v3 GEL + vídeo na Tecnologia R² + cores v2 nos blocos
+   (17/07 — decisão Gabs; substitui o hero-vídeo-no-card)
+   ============================================================ */
+
+/* --- fundo de gel tingido teal, camada ÚNICA full-bleed (mata a "linha vertical":
+       sem container/card, cover cobre a largura toda) --- */
+.hero--gel { position: relative; overflow: hidden; background: #0F4F4D; }
+.hero--gel::after { content: none; }
+.hero--gel .hero-bg-layer {
+  position: absolute; inset: 0; z-index: 0;
+  background: url('assets/images/hero-bg-gel.jpg?v=25') center/cover no-repeat;
+}
+/* degradê só p/ legibilidade do texto à esquerda — suave, sem emenda */
+.hero--gel .hero-bg-layer::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(100deg, #0F4F4D 0%, rgba(15,79,77,.82) 30%, rgba(15,79,77,.34) 62%, rgba(11,103,99,.12) 100%);
+}
+.hero--gel .hero-split { position: relative; z-index: 2;
+  grid-template-columns: minmax(0,1.04fr) minmax(0,0.96fr);
+  gap: clamp(24px,4vw,56px); align-items: center;
+}
+
+/* --- produto recortado LIMPO: reseta a herança do card antigo (.hero-art img:
+       border-radius/box-shadow/aspect-ratio/object-fit cover) --- */
+.hero--gel .hero-art { position: relative; }
+.hero--gel .hero-art .hero-prod {
+  width: 100%; height: auto; max-height: 86vh;
+  aspect-ratio: auto; border-radius: 0; background: none;
+  object-fit: contain;
+  box-shadow: none;
+  filter: drop-shadow(0 26px 34px rgba(0,14,14,.5)) drop-shadow(0 10px 14px rgba(0,14,14,.32));
+}
+@media (max-width: 880px) {
+  .hero--gel .hero-split { grid-template-columns: 1fr; gap: 26px; }
+  .hero--gel .hero-art .hero-prod { max-height: none; width: 88%; margin: 0 auto; display: block; }
+}
+
+/* --- vídeo reaproveitado na Tecnologia R² --- */
+.s2-kv-video { display: block; border-radius: 20px; }
+
+/* --- CORES v2 nos blocos ("uma cor só na LP" — Mari): pullquote com wash
+       vinho→laranja + topo dos cards de performance nas 3 cores da linha --- */
+.pullquote .pullquote-overlay {
+  background: linear-gradient(120deg, rgba(122,43,70,.90) 0%, rgba(157,54,97,.86) 42%, rgba(194,90,52,.88) 100%) !important;
+}
+.performance-grid .perf-card { border-top: 3px solid var(--ilikia-teal); }
+.performance-grid .perf-card:nth-child(3n+2) { border-top-color: var(--up-deep); }
+.performance-grid .perf-card:nth-child(3n) { border-top-color: var(--up-contour); }
