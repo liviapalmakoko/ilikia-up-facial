@@ -2244,3 +2244,100 @@ html, body { overflow-x: clip; }
 }
 /* respiro do título da seção do form */
 .s6-head h2 { margin-bottom: 14px; }
+
+/* ============================================================
+   AJUSTES 17/07/2026 (noturno) — feedback Mari 16/07 17:50–17:58
+   (thread do card 86ah2xyqw)
+   ============================================================ */
+
+/* 1) HERO reconstruído: split texto × arte oficial (sem overlay em cima
+   do produto). "a foto do banner principal nao ficou legal … de modo que
+   os textos nao tampem o produto" + mobile "muito desconstruído". */
+.hero--split {
+  background: linear-gradient(160deg, #0a3f3d 0%, #0F4F4D 55%, #0b6763 100%);
+  min-height: auto;
+}
+.hero--split::after { content: none; } /* overlay era pro fundo full-bleed; sem ele o produto fica limpo */
+.hero-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+}
+.hero-art img,
+.hero-art-video {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 82vh;
+  aspect-ratio: 1 / 1.12;
+  object-fit: cover;
+  object-position: center 30%;
+  border-radius: 28px;
+  box-shadow: 0 34px 70px rgba(0, 20, 20, 0.4);
+}
+/* o vídeo é 16:9 com as caixas ao centro-direita; puxa o enquadramento p/ elas */
+.hero-art-video { object-position: 62% center; background: #0a2b2b; }
+@media (max-width: 880px) {
+  .hero-split { grid-template-columns: 1fr; gap: 36px; }
+  .hero--split .hero-content { padding-top: 96px; }
+  .hero-art img { aspect-ratio: 4 / 4.6; max-height: none; object-position: center 32%; }
+  .hero-art-video { aspect-ratio: 4 / 4.6; max-height: none; object-position: 60% center; }
+}
+
+/* 2) florzinha do kicker centralizada verticalmente com o texto
+   ("o simbolo de ilikia nao ta centralizado aqui") */
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding-left: 0;
+}
+.kicker::before {
+  position: static;
+  transform: none;
+  flex: none;
+}
+
+/* 3) molécula/bolha só em volta dos produtos, não na seção inteira
+   ("essa molécula ficaria melhor apenas em volta dos produtos") */
+.section-2 { background: var(--bg); }
+.s2-visual::before {
+  content: "";
+  position: absolute;
+  inset: -14% -10%;
+  background: url('assets/images/bg-bolhas.jpg') center/cover no-repeat;
+  background-blend-mode: soft-light;
+  opacity: 0.55;
+  border-radius: 50%;
+  -webkit-mask: radial-gradient(closest-side, #000 55%, transparent 100%);
+  mask: radial-gradient(closest-side, #000 55%, transparent 100%);
+  pointer-events: none;
+}
+.s2-visual .s2-kv { position: relative; z-index: 1; }
+
+/* 4) bug dos "ups" (cópia fantasma visível antes do clique): o char-wrap
+   era mais alto (line-height 1.3) que o char (1.05) e o duplicate em
+   translateY(110%) ainda aparecia dentro da caixa. Trava dupla:
+   alturas iguais + duplicate invisível até ativar. */
+.slide-stagger .char-wrap { line-height: 1.05; }
+.slide-stagger .char-duplicate {
+  transform: translateY(130%);
+  opacity: 0;
+  transition: transform 0.32s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.15s ease;
+}
+.slide-title[data-active="true"] .char-duplicate { opacity: 1; }
+
+/* 5) "trazer as cores das outras embalagens pra alguns blocos": ícones dos
+   boxes de performance alternam as 3 cores da linha (fine/deep/contour).
+   Proposta conservadora — variação sem sair do sistema da marca. */
+.performance-grid .perf-card:nth-child(3n+2) .perf-icon {
+  background: rgba(140, 46, 79, 0.10);
+  border-color: rgba(140, 46, 79, 0.28);
+  color: var(--up-deep);
+}
+.performance-grid .perf-card:nth-child(3n) .perf-icon {
+  background: rgba(226, 108, 63, 0.10);
+  border-color: rgba(226, 108, 63, 0.30);
+  color: var(--up-contour);
+}

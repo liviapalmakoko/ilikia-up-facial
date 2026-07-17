@@ -31,7 +31,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet">
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/GothamBook.woff2" crossorigin>
 
-<link rel="stylesheet" href="style.css?v=22">
+<link rel="stylesheet" href="style.css?v=24">
 
   <!-- Tracking global ILIKIA/AICONIQ - Pixel + GA4 + CAPI (server-side) via gateway -->
   <script>window.__TRK__={brand:'ilikia',pixelId:'666277432116339',ga4Id:'',collect:'https://track-ilikia.koko.ag/collect'};</script>
@@ -73,32 +73,43 @@
 <!-- ===========================================
      SEÇÃO 1 — HERO
      =========================================== -->
-<section class="hero">
-  <!-- 16/07/2026: fundo em alta resolução (arte oficial da pasta do cliente) no lugar do vídeo comprimido — feedback 15/07 -->
-  <img class="hero-bg-video" src="assets/images/hero-capa.jpg?v=2" alt="" aria-hidden="true">
+<section class="hero hero--split">
+  <!-- 17/07 (noturno): banner reconstruído — texto e produto lado a lado, sem texto
+       cobrindo o produto (feedback Mari 16/07, referência upmax.koko.ag).
+       Arte oficial da pasta do cliente exibida inteira como card, sem overlay. -->
+  <div class="wrap hero-content hero-split">
+    <div class="hero-text">
+      <h1 class="headline">
+        Você <em>evoluiu.</em><br>
+        O seu <strong>preenchedor</strong> também.
+      </h1>
 
-  <div class="wrap hero-content">
-    <h1 class="headline">
-      Você <em>evoluiu.</em><br>
-      O seu <strong>preenchedor</strong> também.
-    </h1>
+      <p class="hero-products">
+        <span class="hero-product hero-product--fine">UP Fine</span>
+        <span class="sep">·</span>
+        <span class="hero-product hero-product--deep">UP Deep</span>
+        <span class="sep">·</span>
+        <span class="hero-product hero-product--contour">UP Contour</span>
+      </p>
+      <p class="hero-products-sub">Preenchedor a base de ácido hialurônico</p>
 
-    <p class="hero-products">
-      <span class="hero-product hero-product--fine">UP Fine</span>
-      <span class="sep">·</span>
-      <span class="hero-product hero-product--deep">UP Deep</span>
-      <span class="sep">·</span>
-      <span class="hero-product hero-product--contour">UP Contour</span>
-    </p>
-    <p class="hero-products-sub">Preenchedor a base de ácido hialurônico</p>
+      <p class="hero-tag">
+        Uma linha completa de ácido hialurônico desenvolvida para diferentes
+        planos, indicações e níveis de estruturação: com previsibilidade
+        clínica e integração tecidual superior.<sup>1</sup>
+      </p>
 
-    <p class="hero-tag">
-      Uma linha completa de ácido hialurônico desenvolvida para diferentes
-      planos, indicações e níveis de estruturação: com previsibilidade
-      clínica e integração tecidual superior.<sup>1</sup>
-    </p>
-
-    <a href="#linha" class="btn-primary">Quero conhecer a linha completa</a>
+      <a href="#linha" class="btn-primary">Quero conhecer a linha completa</a>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <!-- 17/07 (2ª passada): vídeo hero HD oficial da pasta (1080p, caixas em movimento
+           no splash). No card do split o texto não encosta no produto (feedback 16/07) e
+           volta o movimento que a cliente pediu (15/07). Poster p/ 1º paint. -->
+      <video class="hero-art-video" autoplay muted loop playsinline preload="metadata"
+             poster="assets/images/hero-video-poster.jpg?v=1">
+        <source src="assets/videos/hero.mp4" type="video/mp4">
+      </video>
+    </div>
   </div>
 </section>
 
@@ -484,11 +495,14 @@
         <div id="formDefault">
         <!-- 16/07/2026: form padronizado de todas as LPs (ordem UP Full, Estado, 5 especialidades,
              CPF/CNPJ opcional — ordem da Mari 24/06) — feedback 15/07 -->
-        <div class="form-row two">
+        <!-- 17/07 (noturno): Nome e E-mail em linha inteira — paridade estrita com o form canônico da UP Full -->
+        <div class="form-row">
           <div class="form-field">
             <label for="f-nome">Nome completo *</label>
             <input id="f-nome" name="nome" type="text" placeholder="Seu nome" required>
           </div>
+        </div>
+        <div class="form-row">
           <div class="form-field">
             <label for="f-email">E-mail *</label>
             <input id="f-email" name="email" type="email" placeholder="voce@clinica.com.br" required>
@@ -664,7 +678,7 @@
   </div>
 </footer>
 
-<script src="script.js?v=22"></script>
+<script src="script.js?v=24"></script>
   <!-- ===== Aviso de cookies (modelo opt-out): tracking carrega por padrao; so para se "Recusar" ===== -->
   <style>
     #cookieBanner{position:fixed;left:0;right:0;bottom:0;z-index:99999;display:flex;gap:16px;align-items:center;justify-content:center;flex-wrap:wrap;padding:14px 20px;background:rgba(12,18,30,.95);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-top:1px solid rgba(255,255,255,.14);color:#EEF2F8;font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;box-shadow:0 -8px 30px rgba(0,0,0,.3);transform:translateY(110%);transition:transform .35s ease}
