@@ -2353,7 +2353,7 @@ html, body { overflow-x: clip; }
 .hero--gel::after { content: none; }
 .hero--gel .hero-bg-layer {
   position: absolute; inset: 0; z-index: 0;
-  background: url('assets/images/hero-bg-gel.jpg?v=29') center/cover no-repeat;
+  background: url('assets/images/hero-bg-gel.jpg?v=30') center/cover no-repeat;
 }
 /* degradê só p/ legibilidade do texto à esquerda — suave, sem emenda */
 .hero--gel .hero-bg-layer::after {
@@ -2380,9 +2380,6 @@ html, body { overflow-x: clip; }
   .hero--gel .hero-art .hero-prod { max-height: none; width: 88%; margin: 0 auto; display: block; }
 }
 
-/* --- vídeo reaproveitado na Tecnologia R² --- */
-.s2-kv-video { display: block; border-radius: 20px; }
-
 /* --- CORES v2 nos blocos ("uma cor só na LP" — Mari): pullquote com wash
        vinho→laranja + topo dos cards de performance nas 3 cores da linha --- */
 .pullquote .pullquote-overlay {
@@ -2393,17 +2390,14 @@ html, body { overflow-x: clip; }
 .performance-grid .perf-card:nth-child(3n) { border-top-color: var(--up-contour); }
 
 /* ============================================================
-   18/07 (Mari 18:11) — imagem da Lívia na R² + blindagem do fantasma "ups"
+   18/07 — Tecnologia R² volta ao formato ORIGINAL (caixas-kv-3d): produtos
+   em PNG transparente flutuando DIRETO sobre o fundo da seção (bolhas + glow),
+   SEM card/moldura. Usa a base .s2-kv (drop-shadow nas caixas). Blindagem "ups".
    ============================================================ */
-/* card da cena-5 na Tecnologia R² (retrato, emoldurado, sem dominar a seção) */
-.s2-kv-cena {
-  width: auto; max-width: 100%; height: auto; max-height: 600px;
-  margin: 0 auto; display: block;
-  border-radius: 22px;
-  filter: none;
-  box-shadow: 0 26px 54px rgba(0, 20, 20, 0.4);
+/* drop-shadow sutil NAS CAIXAS (não no container) — refina a base p/ o cutout limpo */
+.s2-kv {
+  filter: drop-shadow(0 24px 30px rgba(0, 20, 20, 0.42)) drop-shadow(0 8px 12px rgba(0, 20, 20, 0.28));
 }
-@media (max-width: 880px) { .s2-kv-cena { max-height: 480px; } }
 
 /* BLINDAGEM do fantasma "ups": além do opacity:0, garante que a cópia
    duplicada NUNCA renderize até o título ficar ativo (visibility). Custo zero,
