@@ -2353,7 +2353,7 @@ html, body { overflow-x: clip; }
 .hero--gel::after { content: none; }
 .hero--gel .hero-bg-layer {
   position: absolute; inset: 0; z-index: 0;
-  background: url('assets/images/hero-bg-gel.jpg?v=25') center/cover no-repeat;
+  background: url('assets/images/hero-bg-gel.jpg?v=26') center/cover no-repeat;
 }
 /* degradê só p/ legibilidade do texto à esquerda — suave, sem emenda */
 .hero--gel .hero-bg-layer::after {
@@ -2391,3 +2391,22 @@ html, body { overflow-x: clip; }
 .performance-grid .perf-card { border-top: 3px solid var(--ilikia-teal); }
 .performance-grid .perf-card:nth-child(3n+2) { border-top-color: var(--up-deep); }
 .performance-grid .perf-card:nth-child(3n) { border-top-color: var(--up-contour); }
+
+/* ============================================================
+   18/07 (Mari 18:11) — imagem da Lívia na R² + blindagem do fantasma "ups"
+   ============================================================ */
+/* card da cena-5 na Tecnologia R² (retrato, emoldurado, sem dominar a seção) */
+.s2-kv-cena {
+  width: auto; max-width: 100%; height: auto; max-height: 600px;
+  margin: 0 auto; display: block;
+  border-radius: 22px;
+  filter: none;
+  box-shadow: 0 26px 54px rgba(0, 20, 20, 0.4);
+}
+@media (max-width: 880px) { .s2-kv-cena { max-height: 480px; } }
+
+/* BLINDAGEM do fantasma "ups": além do opacity:0, garante que a cópia
+   duplicada NUNCA renderize até o título ficar ativo (visibility). Custo zero,
+   funciona mesmo se um CSS/asset velho ficar em cache. */
+.slide-stagger .char-duplicate { visibility: hidden; }
+.slide-title[data-active="true"] .char-duplicate { visibility: visible; }
