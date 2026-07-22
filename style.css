@@ -2299,21 +2299,9 @@ html, body { overflow-x: clip; }
   flex: none;
 }
 
-/* 3) molécula/bolha só em volta dos produtos, não na seção inteira
-   ("essa molécula ficaria melhor apenas em volta dos produtos") */
+/* 21/07: removido o círculo (disco bg-bolhas mascarado) atrás das caixas, a pedido
+   do cliente — as caixas ficam sobre o fundo da seção + bolhas de gel, sem o disco. */
 .section-2 { background: var(--bg); }
-.s2-visual::before {
-  content: "";
-  position: absolute;
-  inset: -14% -10%;
-  background: url('assets/images/bg-bolhas.jpg') center/cover no-repeat;
-  background-blend-mode: soft-light;
-  opacity: 0.55;
-  border-radius: 50%;
-  -webkit-mask: radial-gradient(closest-side, #000 55%, transparent 100%);
-  mask: radial-gradient(closest-side, #000 55%, transparent 100%);
-  pointer-events: none;
-}
 .s2-visual .s2-kv { position: relative; z-index: 1; }
 
 /* 4) bug dos "ups" (cópia fantasma visível antes do clique): o char-wrap
@@ -2404,3 +2392,30 @@ html, body { overflow-x: clip; }
    funciona mesmo se um CSS/asset velho ficar em cache. */
 .slide-stagger .char-duplicate { visibility: hidden; }
 .slide-title[data-active="true"] .char-duplicate { visibility: visible; }
+
+/* ============================================================
+   22/07/2026 — INVERSÃO DE TONS hero <-> bloco 2 (pedido Mari 22/07 13:47:
+   "percebe que o bloco 2 tá mais claro que o banner principal? eles querem
+   que o tom mais claro esteja no banner"). Hero -> CLARO, section-2 -> ESCURO.
+   Rollback = deletar este bloco. [86ah2xyqw]
+   ============================================================ */
+/* HERO -> claro */
+.hero--gel { background: var(--ilikia-teal); }
+.hero--gel .hero-bg-layer { filter: brightness(1.30) saturate(.90); }
+.hero--gel .hero-bg-layer::after {
+  background: linear-gradient(100deg,
+    rgba(255,255,255,.93) 0%, rgba(236,250,248,.82) 30%,
+    rgba(214,242,239,.44) 62%, rgba(214,242,239,.10) 100%);
+}
+.hero--gel .headline,
+.hero--gel .hero-products,
+.hero--gel .hero-tag { color: var(--ilikia-deep); text-shadow: none; }
+.hero--gel .hero-products-sub { color: rgba(15,79,77,.82); }
+.hero--gel .headline em { color: var(--ilikia-teal); }
+.hero--gel .hero-tag sup { color: var(--ilikia-teal); }
+.hero--gel .btn-primary { background: var(--ilikia-deep); color: #fff; }
+.hero--gel .btn-primary:hover { background: transparent; color: var(--ilikia-deep); border-color: var(--ilikia-deep); }
+
+/* SECTION-2 -> escuro (texto do bloco já é branco !important) */
+.section-2 { background: var(--ilikia-deep) !important; background-image: none !important; }
+.section-2 .h-section em { color: var(--ilikia-teal-soft); }
