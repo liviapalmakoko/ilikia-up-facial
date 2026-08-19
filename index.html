@@ -31,7 +31,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet">
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/GothamBook.woff2" crossorigin>
 
-<link rel="stylesheet" href="style.css?v=31">
+<link rel="stylesheet" href="style.css?v=40">
 
   <!-- Tracking global ILIKIA/AICONIQ - Pixel + GA4 + CAPI (server-side) via gateway -->
   <script>window.__TRK__={brand:'ilikia',pixelId:'666277432116339',ga4Id:'',collect:'https://track-ilikia.koko.ag/collect'};</script>
@@ -175,9 +175,11 @@
           <span class="bubble b23"></span>
           <span class="bubble b24"></span>
         </div>
-        <!-- 18/07: formato ORIGINAL — produtos em PNG transparente (recorte limpo) flutuando
-             direto sobre o fundo da seção (bolhas + glow), sem card/moldura. Mesmo cutout do hero. -->
-        <img class="s2-kv" src="assets/images/hero-produtos-cut.webp?v=30" alt="Linha UP: UP Fine, UP Deep e UP Contour" loading="lazy" decoding="async">
+        <!-- 19/08: entra a modelo dos materiais da Linha UP (arquivo do KV do cliente,
+             "MULHER FACE UP - UP FACIAL"), no lugar das caixas — que continuam no hero
+             logo acima. Nome de arquivo NOVO de proposito: o Cloudflare guarda os assets
+             do koko.ag por 30 dias e trocar o conteudo mantendo o nome nao chega no cliente. -->
+        <img class="s2-kv s2-kv--modelo" src="assets/images/modelo-linha-up-v1.webp" alt="Modelo da campanha da Linha UP" loading="lazy" decoding="async" width="1800" height="1004">
       </div>
     </div>
   </div>
@@ -215,13 +217,13 @@
 
       <div class="hover-slider-images reveal">
         <div class="slide-image slide-fine" data-slide="0" data-active="true">
-          <img src="assets/images/up-fine.png?v=30" alt="UP Fine, áreas de aplicação">
+          <img src="assets/images/up-fine-original.png?v=32" alt="UP Fine, áreas de aplicação">
         </div>
         <div class="slide-image slide-deep" data-slide="1">
-          <img src="assets/images/up-deep.png?v=30" alt="UP Deep, áreas de aplicação">
+          <img src="assets/images/up-deep-original.png?v=32" alt="UP Deep, áreas de aplicação">
         </div>
         <div class="slide-image slide-contour" data-slide="2">
-          <img src="assets/images/up-contour.png?v=30" alt="UP Contour, áreas de aplicação">
+          <img src="assets/images/up-contour-original.png?v=32" alt="UP Contour, áreas de aplicação">
         </div>
       </div>
 
@@ -675,7 +677,7 @@
   </div>
 </footer>
 
-<script src="script.js?v=30"></script>
+<script src="script.js?v=33"></script>
   <!-- ===== Aviso de cookies (modelo opt-out): tracking carrega por padrao; so para se "Recusar" ===== -->
   <style>
     #cookieBanner{position:fixed;left:0;right:0;bottom:0;z-index:99999;display:flex;gap:16px;align-items:center;justify-content:center;flex-wrap:wrap;padding:14px 20px;background:rgba(12,18,30,.95);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-top:1px solid rgba(255,255,255,.14);color:#EEF2F8;font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;box-shadow:0 -8px 30px rgba(0,0,0,.3);transform:translateY(110%);transition:transform .35s ease}

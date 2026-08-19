@@ -2419,3 +2419,154 @@ html, body { overflow-x: clip; }
 /* SECTION-2 -> escuro (texto do bloco já é branco !important) */
 .section-2 { background: var(--ilikia-deep) !important; background-image: none !important; }
 .section-2 .h-section em { color: var(--ilikia-teal-soft); }
+
+/* ============================================================
+   RODADA 19/08/2026 — paleta: sai o verde escuro das áreas
+   grandes, entram o verde claro e o neutro (card 86ah2xyqw)
+
+   Pedido da Mari (19/08 10:41) + mockup "Sugestão para próxima
+   versão" que veio junto. Leitura do pedido, para o registro:
+   "remover o verde escuro em todos os pontos" vale para FUNDO de
+   área grande. O próprio mockup mantém o verde escuro na
+   tipografia de destaque e nos botões — e a Mari pede
+   explicitamente "podemos usar o verde escuro na fonte para
+   destacar o título". Então o que sai é a superfície, não a cor.
+
+   Sobre os dois tons novos: o teal oficial #08B2AC tem contraste
+   2.63:1 com texto branco, abaixo do mínimo legível (4.5:1). O
+   próprio mockup do cliente já mostra um teal mais fechado nas
+   áreas de texto branco (amostrado #3A827E na performance,
+   #50AEA9 no menu). Fixei em #1E7C78 (4.99:1) para superfície e
+   #17706C (4.80:1 sobre o neutro) para texto de destaque em fundo
+   claro. Continua sendo o verde claro da linha, e legível.
+   ============================================================ */
+:root {
+  --neutral:      #E8E8E8;  /* fundo neutro, amostrado do mockup */
+  --neutral-line: #D5D5D5;
+  --teal-surface: #1E7C78;  /* fundo grande com texto branco */
+  --teal-ink:     #17706C;  /* destaque de texto sobre fundo claro */
+}
+
+/* ---- 1. o verde escuro sai das superfícies ---- */
+.topnav,
+.nav-mobile { background: var(--teal-surface); }
+
+.site-footer {
+  background:
+    radial-gradient(ellipse 54% 34% at 22% 0%, rgba(255, 255, 255, 0.10), transparent 70%),
+    var(--teal-surface);
+}
+
+/* ---- 4. performance: fundo verde claro, textura do gel MANTIDA ----
+   `background-color` de propósito: a camada de 17/07 põe o bg-bolhas.jpg
+   em `background-image`, e trocar pelo shorthand apagaria o gel. */
+.section-5 { background-color: var(--teal-surface); }
+
+/* ---- 2. seção 2: fundo neutro, título em verde escuro ---- */
+.section-2 {
+  background: var(--neutral) !important;
+  background-image: none !important;
+}
+.section-2 .h-section { color: var(--ilikia-deep); }
+.section-2 .h-section em { color: var(--teal-ink); }
+.section-2 .kicker { color: var(--teal-ink); }
+.section-2 .p-body { color: var(--text-soft); }
+.section-2 .p-body strong { color: var(--ilikia-deep); }
+.section-2 .p-body sup,
+.section-2 .h-section sup { color: var(--teal-ink); }
+.section-2 .s2-bullets li { color: var(--ilikia-deep); }
+
+/* A modelo entra como foto de verdade: tem fundo próprio (cinza do KV),
+   então perde o drop-shadow de recorte e ganha moldura arredondada.
+   O enquadramento é do CSS, não do arquivo — assim o retrato funciona em
+   qualquer largura sem gerar um corte novo por breakpoint. */
+.s2-kv--modelo {
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: 72% center;
+  border-radius: var(--radius-lg);
+  filter: none;
+}
+@media (max-width: 768px) {
+  .s2-kv--modelo { aspect-ratio: 16 / 10; object-position: 68% center; }
+}
+
+/* ---- 3. seção 4 + ficha técnica: fundo neutro ----
+   Estavam em --bg-soft, que é o teal. O `em` do título era branco (lia
+   sobre o teal) e sobre o neutro sumiria. */
+.section-4,
+.section-spec { background: var(--neutral); }
+.section-4 .h-section { color: var(--ilikia-deep); }
+.section-4 .h-section em { color: var(--teal-ink); }
+
+/* ---- 5. formulário: fundo neutro, sem imagem de fundo ---- */
+.section-6 {
+  background: var(--neutral) !important;
+  background-image: none !important;
+  color: var(--text);
+}
+.section-6 .s6-head h2 { color: var(--ilikia-deep); }
+.section-6 .s6-head h2 em { color: var(--teal-ink); }
+.section-6 .s6-head p,
+.section-6 .s6-lead { color: var(--text-soft); }
+
+/* ---- Contraste: o que era branco sobre fundo escuro precisa de cor
+   nova agora que o fundo é claro. Sem isto os tópicos da seção 2 e a
+   descrição da seção 4 ficam brancos sobre #E8E8E8 (1,23:1 — some).
+   Todos os valores abaixo foram medidos na página renderizada e
+   passam o mínimo de 4,5:1 (3:1 nos títulos grandes). ---- */
+
+/* seção 2 — o bloco original ("texto branco sobre fundo teal") é todo
+   `!important`, então o título, o corpo e os tópicos precisam ser também.
+   Sem isto os três continuam brancos sobre o neutro: 1,23:1, ilegíveis. */
+.section-2 .h-section     { color: var(--ilikia-deep) !important; }
+.section-2 .p-body        { color: var(--text-soft) !important; }
+.section-2 .s2-bullets li { color: var(--ilikia-deep) !important; }
+
+/* seção 4 — "cada indicação em uma cor" (item 3 do pedido) vale também
+   para os rótulos, não só para os desenhos: cada produto passa a usar a
+   sua própria cor no nome e no título da indicação.
+   O laranja da marca (#E26C3F) tem só 2,66:1 sobre o neutro. Para TEXTO
+   uso um tom fechado da mesma família (4,77:1); a cor de marca continua
+   intacta nas pastilhas, bordas e caixas. */
+:root { --up-contour-ink: #A84722; }
+
+.slide-info-desc { color: var(--text-soft); }
+.slide-info-title { color: var(--teal-ink); }
+.slide-info[data-slide="0"] .slide-info-title { color: var(--teal-ink); }
+.slide-info[data-slide="2"] .slide-info-title { color: var(--up-contour-ink); }
+
+.slide-title { color: var(--ilikia-deep); }
+.slide-title.slide-fine    { color: var(--teal-ink); }
+.slide-title.slide-deep    { color: var(--up-deep); }
+.slide-title.slide-contour { color: var(--up-contour-ink); }
+
+/* seção 5 e rodapé — o teal-soft #7FC4BE lia bem sobre o verde escuro,
+   mas cai para 2,50:1 sobre a superfície nova. */
+.section-5 .h-section em,
+.section-5 .p-body sup { color: #C9E9E5; }
+.footer-hashtag { color: #FFFFFF; opacity: 0.9; }
+
+/* O nome do produto ativo tem uma segunda camada de letras (efeito de
+   troca no hover) com cor própria. A do UP Fine era branca — sobre o
+   neutro sumia justamente no item que está aberto por padrão. */
+.slide-fine[data-active="true"]    .char-duplicate { color: var(--teal-ink); }
+.slide-contour[data-active="true"] .char-duplicate { color: var(--up-contour-ink); }
+
+/* Título da ficha técnica: era branco (lia sobre o teal da seção). */
+.spec-title { color: var(--ilikia-deep); }
+.spec-title em { color: var(--teal-ink); }
+
+/* Miudezas do card do formulário — não foram tocadas nesta rodada, mas já
+   estavam abaixo do mínimo legível sobre o card branco (2,63:1 e 3,45:1).
+   Como são o link da política e o aviso de destinação a profissional de
+   saúde, corrigidos aqui de uma vez. */
+.section-6 .form-consent a { color: var(--teal-ink); }
+.section-6 .form-disclaimer,
+.section-6 .form-consent { color: #6B6B6B; }
+
+/* Os nomes dos produtos não selecionados ficam a 45% de opacidade — o
+   estado "apagado" do componente. 45% de branco sobre o teal escuro
+   ainda lia; 45% de cor sobre o neutro claro quase some. Sobe para 62%,
+   que mantém a hierarquia entre ativo e inativo e volta a ser legível. */
+.slide-stagger .char-original { opacity: 0.62; }
