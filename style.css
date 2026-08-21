@@ -970,7 +970,13 @@ h2.h-section.center {
   transition: transform 0.32s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   line-height: 1.05;
 }
-.slide-stagger .char-original { opacity: 0.45; }
+/* era 0.45: a camada visivel do nome INATIVO ficava a 45%, entao UPDeep e
+   UPContour liam como versoes lavadas da cor de marca — foi isso que a Mari
+   apontou em 21/08 ("as cores das marcacoes estao muito mais claras").
+   Em 1 a cor bate exatamente com a do produto e com a marcacao no rosto.
+   Efeito colateral aceito: os tres nomes ficam com o mesmo peso; quem sinaliza
+   o ativo passa a ser o rosto que troca e o texto da direita. */
+.slide-stagger .char-original { opacity: 1; }
 .slide-stagger .char-duplicate {
   position: absolute;
   left: 0; top: 0;
@@ -1018,9 +1024,13 @@ h2.h-section.center {
   object-position: center;
   display: block;
 }
+/* 21/08 — brightness(1.5) removido: clareava o traco do rosto (#A8A8A8, ja
+   fraco sobre o neutro #E8E8E8) e as marcacoes junto, deixando tudo lavado
+   (queixa da Mari 21/08). Traco e marcacao agora vem corrigidos no proprio
+   PNG (*-indic-v2.png): traco #4A4A4A e marcacao na cor do produto. */
 .slide-fine img,
 .slide-deep img,
-.slide-contour img { filter: brightness(1.5); }
+.slide-contour img { filter: none; }
 
 /* Descrição (dentro de .s4-end) — grid stacking */
 .hover-slider-info {
@@ -2565,8 +2575,10 @@ html, body { overflow-x: clip; }
 .section-6 .form-disclaimer,
 .section-6 .form-consent { color: #6B6B6B; }
 
-/* Os nomes dos produtos não selecionados ficam a 45% de opacidade — o
-   estado "apagado" do componente. 45% de branco sobre o teal escuro
-   ainda lia; 45% de cor sobre o neutro claro quase some. Sobe para 62%,
-   que mantém a hierarquia entre ativo e inativo e volta a ser legível. */
-.slide-stagger .char-original { opacity: 0.62; }
+/* 21/08 — este bloco subia a opacidade do nome inativo de 45% para 62% para
+   recuperar legibilidade. Continuava falseando a cor: 62% de #8C2E4F sobre o
+   neutro lia como #AE7489, e foi isso que a Mari apontou ("as cores estão
+   muito mais claras"). Em 1 o nome bate exatamente com a cor do produto e com
+   a marcação no rosto. A regra original ficava mais acima no arquivo e era
+   sobrescrita por esta — as duas foram para 1. */
+.slide-stagger .char-original { opacity: 1; }
